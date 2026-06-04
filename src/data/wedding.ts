@@ -1,21 +1,36 @@
+const bride = {
+  name: 'Mehanas MA',
+  shortName: 'Mehanas',
+  father: 'Muhammed Ashraf K',
+  mother: 'Seenath P',
+  address: 'Meshkaat, Chalad, Kannur',
+  monogram: 'M',
+}
+
+const groom = {
+  name: 'Abdul Adil EP',
+  shortName: 'Abdul Adil',
+  father: 'Akbar EP',
+  mother: 'Sakeena V',
+  address: "Bicha's, Idiyangara, Calicut",
+  monogram: 'A',
+}
+
 export const wedding = {
-  groom: {
-    name: 'Adil EP',
-    shortName: 'Adil',
-    father: 'Akbar Ennappadam',
-    mother: 'Sakeena',
-  },
-  bride: {
-    name: 'Mehanas MA',
-    shortName: 'Mehanas',
-    father: 'Muhammed Ashraf Keloth',
-    mother: 'Plliyagath Seenath',
+  bride,
+  groom,
+  display: {
+    initials: `${bride.monogram} & ${groom.monogram}`,
+    coupleShort: `${bride.shortName} & ${groom.shortName}`,
+    coupleFull: `${bride.name} & ${groom.name}`,
+    documentTitle: `${bride.shortName} & ${groom.shortName} | Wedding Invitation`,
+    metaDescription: `${bride.name} & ${groom.name} — You are cordially invited to the wedding. Nikah & reception on 26 July 2026 at NNS Auditorium, Thayyil.`,
   },
   weddingDate: '2026-07-26T12:30:00',
   tagline: 'With hearts full of joy, we invite you to share in our happiness',
   invitation: {
     headline: 'You are cordially invited',
-    subline: 'to the wedding of our daughter',
+    subline: `to the wedding of ${bride.name} & ${groom.name}`,
     hostLine: 'With the blessings of Allah, we invite you to share in our joy',
   },
   bismillah: 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',
@@ -51,7 +66,7 @@ export const wedding = {
   story: {
     title: 'A Note from Our Family',
     paragraphs: [
-      'It is with immense joy and gratitude to Allah that we announce the wedding of our beloved daughter Mehanas to Adil EP.',
+      `It is with immense joy and gratitude to Allah that we announce the wedding of our beloved daughter ${bride.name} to ${groom.name}.`,
       'We would be honoured to have you with us on this blessed day — to witness their nikah, share in our happiness, and bless them as they begin this beautiful chapter together.',
     ],
   },

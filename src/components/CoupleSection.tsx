@@ -10,6 +10,7 @@ function CoupleCard({
   father,
   mother,
   relation,
+  address,
   variant,
   monogram,
   delay,
@@ -19,6 +20,7 @@ function CoupleCard({
   father: string
   mother: string
   relation: string
+  address?: string
   variant: 'bride' | 'groom'
   monogram: string
   delay: number
@@ -38,6 +40,11 @@ function CoupleCard({
       </span>
 
       <div className="couple-showcase-inner">
+        <span className="couple-card-corner couple-card-corner-tl" aria-hidden />
+        <span className="couple-card-corner couple-card-corner-tr" aria-hidden />
+        <span className="couple-card-corner couple-card-corner-bl" aria-hidden />
+        <span className="couple-card-corner couple-card-corner-br" aria-hidden />
+
         <div className="couple-identity text-center">
           <p className="couple-role-label">{role}</p>
           <h3 className="font-display couple-name-display">{name}</h3>
@@ -54,6 +61,12 @@ function CoupleCard({
           <p className="couple-parents-name">
             {father} <span className="couple-parents-amp">&</span> {mother}
           </p>
+          {address ? (
+            <div className="couple-residence-block">
+              <p className="couple-parents-label">Res.</p>
+              <p className="couple-parents-name">{address}</p>
+            </div>
+          ) : null}
         </motion.div>
       </div>
     </motion.article>
@@ -88,7 +101,7 @@ function CenterOrnament() {
 
 export function CoupleSection() {
   return (
-    <section id="couple" className="couple-section relative overflow-hidden py-20 md:py-28">
+    <section id="couple" className="couple-section section-shell relative overflow-hidden">
       <div className="couple-section-bg pointer-events-none absolute inset-0" />
       <div className="pattern-bg pointer-events-none absolute inset-0 opacity-25" />
       <FloatingParticles className="opacity-40" />
@@ -98,9 +111,9 @@ export function CoupleSection() {
 
       <div className="pointer-events-none absolute left-1/2 top-0 h-px w-3/4 max-w-4xl -translate-x-1/2 bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
 
-      <div className="relative mx-auto max-w-5xl px-6">
+      <div className="content-wrap relative max-w-5xl">
         <motion.div
-          className="couple-header mx-auto mb-6 text-center md:mb-8"
+          className="couple-header mx-auto mb-10 text-center md:mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={viewportOnce}
@@ -110,15 +123,16 @@ export function CoupleSection() {
           <p className="couple-header-subline">{wedding.invitation.subline}</p>
         </motion.div>
 
-        <div className="relative grid items-stretch gap-6 md:grid-cols-[1fr_auto_1fr] md:gap-5 lg:gap-8">
+        <div className="relative grid items-stretch gap-5 md:grid-cols-[1fr_auto_1fr] md:gap-6 lg:gap-8">
           <CoupleCard
             role="The Bride"
             name={wedding.bride.name}
             father={wedding.bride.father}
             mother={wedding.bride.mother}
+            address={wedding.bride.address}
             relation="D/o"
             variant="bride"
-            monogram="M"
+            monogram={wedding.bride.monogram}
             delay={0.1}
           />
 
@@ -129,9 +143,10 @@ export function CoupleSection() {
             name={wedding.groom.name}
             father={wedding.groom.father}
             mother={wedding.groom.mother}
+            address={wedding.groom.address}
             relation="S/o"
             variant="groom"
-            monogram="A"
+            monogram={wedding.groom.monogram}
             delay={0.2}
           />
         </div>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
+import { wedding } from '../data/wedding'
 
 const links = [
   { href: '#home', label: 'Home' },
@@ -57,11 +58,11 @@ export function Navbar() {
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6">
           <motion.a
             href="#home"
-            className="font-script text-2xl text-chocolate md:text-3xl"
+            className="nav-brand"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            M & A
+            {wedding.display.initials}
           </motion.a>
 
           <div className="hidden items-center gap-8 md:flex">

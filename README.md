@@ -1,4 +1,4 @@
-# Adil & Mehanas — Wedding Website
+# Mehanas & Abdul Adil — Wedding Website
 
 A beautiful, modern wedding invitation website for a Kerala Malabar Muslim wedding.
 
@@ -15,7 +15,7 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 Edit `src/data/wedding.ts` to update:
 
-- Bride & groom names
+- Bride & groom names, parents, and residences
 - Wedding date
 - Event details (Nikah, Valima, venues)
 - Contact information

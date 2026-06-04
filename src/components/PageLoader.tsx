@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { wedding } from '../data/wedding'
 
 export function PageLoader() {
   const [visible, setVisible] = useState(true)
@@ -42,7 +43,7 @@ export function PageLoader() {
               transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
             >
               <div className="flex h-20 w-20 items-center justify-center rounded-full border border-gold/20 bg-gold/5">
-                <span className="font-script text-4xl text-gold-light">M & A</span>
+                <span className="nav-brand text-gold-light">{wedding.display.initials}</span>
               </div>
             </motion.div>
 

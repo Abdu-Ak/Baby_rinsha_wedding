@@ -17,7 +17,7 @@ export function SectionHeading({
 }) {
   return (
     <motion.div
-      className="mb-14 text-center md:mb-16"
+      className="mb-12 text-center md:mb-14"
       initial="hidden"
       whileInView="visible"
       viewport={viewportOnce}
@@ -26,7 +26,7 @@ export function SectionHeading({
       <motion.p
         variants={fadeUp}
         custom={0}
-        className={`mb-3 text-xs uppercase tracking-[0.35em] ${light ? 'text-gold/80' : 'text-gold'}`}
+        className={`type-eyebrow mb-3 ${light ? 'text-gold/80' : 'text-gold'}`}
       >
         {label}
       </motion.p>
@@ -34,10 +34,8 @@ export function SectionHeading({
         variants={fadeUp}
         custom={0.1}
         className={`${
-          scriptTitle
-            ? 'font-script text-5xl md:text-6xl lg:text-7xl'
-            : 'font-display text-4xl font-light md:text-5xl lg:text-6xl'
-        } text-chocolate`}
+          scriptTitle ? 'type-section-script' : 'type-section-display'
+        }`}
       >
         {title}
       </motion.h2>
@@ -45,7 +43,7 @@ export function SectionHeading({
         <motion.p
           variants={fadeUp}
           custom={0.2}
-          className={`mx-auto mt-5 max-w-xl font-display text-lg italic ${
+          className={`type-body-serif mx-auto mt-4 max-w-xl italic ${
             light ? 'text-brown/55' : 'text-brown/55'
           }`}
         >
@@ -53,13 +51,7 @@ export function SectionHeading({
         </motion.p>
       )}
       <motion.div variants={fadeUp} custom={0.3} className="divider-ornament mt-8">
-        <motion.span
-          className="text-gold"
-          animate={{ rotate: [0, 180, 360] }}
-          transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
-        >
-          ✦
-        </motion.span>
+        <span className="text-gold/90">✦</span>
       </motion.div>
     </motion.div>
   )

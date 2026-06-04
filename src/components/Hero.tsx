@@ -5,7 +5,7 @@ import { wedding } from '../data/wedding'
 import { FloatingParticles } from './FloatingParticles'
 import { FloralAccent } from './FloralAccent'
 
-const petals = Array.from({ length: 8 }, (_, i) => ({
+const petals = Array.from({ length: 4 }, (_, i) => ({
   id: i,
   left: `${8 + (i * 11) % 88}%`,
   delay: i * 0.6,
@@ -88,11 +88,11 @@ export function Hero() {
       </div>
 
       <motion.div
-        className="hero-content-text relative z-10 mx-auto w-full max-w-4xl px-6 pb-44 pt-32 text-center md:pb-48 md:pt-40"
+        className="hero-content-text relative z-10 mx-auto w-full max-w-3xl px-6 pb-40 pt-28 text-center md:pb-44 md:pt-36"
         style={{ opacity: opacityContent }}
       >
         <motion.p
-          className="font-arabic mb-2 mt-4 text-2xl text-chocolate md:mt-8 md:text-3xl"
+          className="font-arabic mb-2 mt-2 text-xl text-chocolate md:mt-6 md:text-2xl"
           initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
           animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
@@ -101,7 +101,7 @@ export function Hero() {
         </motion.p>
 
         <motion.p
-          className="mb-12 text-xs uppercase tracking-[0.3em] text-brown-light md:text-sm"
+          className="type-caption mb-10 text-brown-light/90"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.5 }}
@@ -122,8 +122,8 @@ export function Hero() {
             viewBox="0 0 24 24"
             fill="none"
             className="text-caramel"
-            animate={{ rotate: [0, 360] }}
-            transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+            animate={{ rotate: [0, 180, 360] }}
+            transition={{ duration: 24, repeat: Infinity, ease: 'linear' }}
           >
             <path
               d="M12 2L14 8L20 8L15 12L17 18L12 14L7 18L9 12L4 8L10 8L12 2Z"
@@ -135,16 +135,16 @@ export function Hero() {
         </motion.div>
 
         <motion.p
-          className="mb-3 text-sm uppercase tracking-[0.35em] text-brown-light md:text-base"
+          className="type-eyebrow hero-invite-line mb-3 text-brown-light"
           initial={{ opacity: 0, letterSpacing: '0.1em' }}
-          animate={{ opacity: 1, letterSpacing: '0.35em' }}
+          animate={{ opacity: 1, letterSpacing: '0.28em' }}
           transition={{ duration: 1.5, delay: 0.8 }}
         >
           {wedding.invitation.headline}
         </motion.p>
 
         <motion.p
-          className="mb-6 font-display text-base italic text-brown/70 md:text-lg"
+          className="hero-subline-serif mx-auto mb-8 max-w-md italic text-brown/65"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.95, duration: 0.8 }}
@@ -152,37 +152,21 @@ export function Hero() {
           {wedding.invitation.subline}
         </motion.p>
 
-        <div className="my-4">
-          <motion.h1
-            className="font-script hero-name text-6xl leading-tight md:text-8xl lg:text-9xl"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1.1, ease: [0.22, 1, 0.36, 1] }}
-          >
-            {wedding.bride.shortName}
-          </motion.h1>
-
-          <motion.div
-            className="my-3 flex items-center justify-center"
-            initial={{ scale: 0, rotate: -180 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ duration: 0.8, delay: 1.5, type: 'spring', stiffness: 200 }}
-          >
-            <span className="font-display text-3xl italic text-caramel md:text-4xl">&</span>
-          </motion.div>
-
-          <motion.h1
-            className="font-script hero-name text-6xl leading-tight md:text-8xl lg:text-9xl"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1.35, ease: [0.22, 1, 0.36, 1] }}
-          >
-            {wedding.groom.shortName}
-          </motion.h1>
-        </div>
+        <motion.div
+          className="hero-names-block"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 1.1, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <p className="hero-name-line font-script">{wedding.bride.name}</p>
+          <p className="hero-amp font-display" aria-hidden>
+            &
+          </p>
+          <p className="hero-name-line font-script">{wedding.groom.name}</p>
+        </motion.div>
 
         <motion.p
-          className="mx-auto mb-10 max-w-md px-2 font-display text-sm italic leading-relaxed text-brown/65 md:mb-12 md:text-base"
+          className="hero-subline-serif mx-auto mb-8 mt-8 max-w-md italic text-brown/60"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.7 }}
@@ -191,7 +175,7 @@ export function Hero() {
         </motion.p>
 
         <motion.p
-          className="mx-auto max-w-lg font-display text-sm italic text-brown/50 md:text-base"
+          className="hero-tagline mx-auto max-w-md italic text-brown/50"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.85 }}
@@ -200,22 +184,20 @@ export function Hero() {
         </motion.p>
 
         <motion.div
-          className="hero-date-block mx-auto mt-10 md:mt-12"
+          className="hero-date-block mx-auto mt-9 md:mt-10"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 2.0, duration: 0.8 }}
         >
-          <div className="mb-3 flex items-center justify-center gap-2 text-gold">
-            <Calendar className="h-4 w-4" />
-            <p className="font-display text-lg tracking-wide text-chocolate md:text-xl">
-              Sunday, 26 July 2026
-            </p>
+          <div className="mb-2.5 flex items-center justify-center gap-2 text-gold">
+            <Calendar className="h-3.5 w-3.5" strokeWidth={1.5} />
+            <p className="hero-date-main">Sunday, 26 July 2026</p>
           </div>
-          <div className="flex items-center justify-center gap-2 text-brown/60">
-            <MapPin className="h-3.5 w-3.5 text-caramel" />
-            <p className="font-display text-sm md:text-base">{wedding.venue.full}</p>
+          <div className="flex items-center justify-center gap-2">
+            <MapPin className="h-3.5 w-3.5 text-caramel" strokeWidth={1.5} />
+            <p className="hero-date-venue">{wedding.venue.full}</p>
           </div>
-          <p className="mt-2 text-[10px] uppercase tracking-[0.25em] text-brown-light">
+          <p className="hero-date-meta type-caption mt-2.5 text-brown-light/80">
             Nikah at 12:30 PM · Reception follows
           </p>
         </motion.div>

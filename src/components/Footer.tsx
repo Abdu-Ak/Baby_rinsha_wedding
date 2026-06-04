@@ -7,7 +7,7 @@ import { staggerContainer, staggerItem, viewportOnce } from '../lib/motion'
 
 export function Footer() {
   return (
-    <footer id="contact" className="footer-section relative overflow-hidden py-20 md:py-28">
+    <footer id="contact" className="footer-section section-shell relative overflow-hidden">
       <div className="footer-section-bg pointer-events-none absolute inset-0" />
       <div className="pattern-bg pointer-events-none absolute inset-0 opacity-25" />
       <FloatingParticles className="opacity-30" />
@@ -17,7 +17,7 @@ export function Footer() {
 
       <div className="pointer-events-none absolute left-1/2 top-0 h-px w-3/4 max-w-4xl -translate-x-1/2 bg-gradient-to-r from-transparent via-gold/25 to-transparent" />
 
-      <div className="relative mx-auto max-w-4xl px-6 text-center">
+      <div className="content-wrap relative mx-auto max-w-4xl text-center">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -26,17 +26,17 @@ export function Footer() {
         >
           <motion.div variants={staggerItem}>
             <motion.div
-              animate={{ scale: [1, 1.15, 1] }}
-              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+              animate={{ scale: [1, 1.06, 1] }}
+              transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
             >
-              <Heart className="mx-auto mb-6 h-8 w-8 text-caramel" />
+              <Heart className="mx-auto mb-6 h-7 w-7 text-caramel" strokeWidth={1.25} />
             </motion.div>
           </motion.div>
 
-          <motion.p variants={staggerItem} className="font-arabic mb-4 text-2xl text-chocolate md:text-3xl">
+          <motion.p variants={staggerItem} className="font-arabic mb-4 text-xl text-chocolate md:text-2xl">
             بارَكَ اللَّهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا
           </motion.p>
-          <motion.p variants={staggerItem} className="mb-8 font-display text-sm italic text-brown/55">
+          <motion.p variants={staggerItem} className="type-body-serif mb-8 text-sm italic text-brown/55">
             May Allah bless them both and shower His blessings upon them
           </motion.p>
 
@@ -48,7 +48,7 @@ export function Footer() {
             {wedding.story.paragraphs[1]}
           </motion.p>
 
-          <motion.p variants={staggerItem} className="mb-6 font-display text-sm italic text-brown/55">
+          <motion.p variants={staggerItem} className="type-caption mb-6 text-brown/55">
             {wedding.contact.hostLabel}
           </motion.p>
 
@@ -63,7 +63,7 @@ export function Footer() {
             {wedding.contact.phoneDisplay}
           </motion.a>
 
-          <motion.p variants={staggerItem} className="text-xs uppercase tracking-[0.2em] text-brown/40">
+          <motion.p variants={staggerItem} className="type-caption text-brown/40">
             With love, from our family
           </motion.p>
         </motion.div>

@@ -41,7 +41,7 @@ function CountdownDigit({ value, label, index }: { value: number; label: string;
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.7, delay: index * 0.12, type: 'spring', stiffness: 400, damping: 25 }}
-      whileHover={{ y: -8, scale: 1.02 }}
+      whileHover={{ y: -4 }}
     >
       {/* Corner ornaments */}
       <span className="absolute left-3 top-3 h-3 w-3 border-l border-t border-gold/40" />
@@ -49,11 +49,11 @@ function CountdownDigit({ value, label, index }: { value: number; label: string;
       <span className="absolute bottom-3 left-3 h-3 w-3 border-b border-l border-gold/40" />
       <span className="absolute bottom-3 right-3 h-3 w-3 border-b border-r border-gold/40" />
 
-      <div className="relative px-4 py-8 md:px-6 md:py-10">
+      <div className="relative px-4 py-7 md:px-5 md:py-8">
         <AnimatePresence mode="popLayout">
           <motion.span
             key={value}
-            className="font-display block text-5xl font-light tabular-nums text-chocolate md:text-6xl lg:text-7xl"
+            className="countdown-digit block"
             initial={{ opacity: 0, y: 12, filter: 'blur(4px)' }}
             animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             exit={{ opacity: 0, y: -12, filter: 'blur(4px)' }}
@@ -62,7 +62,7 @@ function CountdownDigit({ value, label, index }: { value: number; label: string;
             {String(value).padStart(2, '0')}
           </motion.span>
         </AnimatePresence>
-        <span className="mt-3 block text-[10px] uppercase tracking-[0.25em] text-gold md:text-xs">
+        <span className="countdown-unit-label mt-3 block text-gold">
           {label}
         </span>
       </div>
@@ -122,15 +122,11 @@ export function Countdown() {
         </svg>
       </div>
 
-      <div className="relative mx-auto max-w-5xl px-6 py-20 md:py-28">
+      <div className="content-wrap relative py-16 md:py-20">
         <SectionHeading
           label="Save the Date"
-          title={
-            <>
-              Counting Down to{' '}
-              <span className="font-script text-5xl text-chocolate md:text-6xl lg:text-7xl">Forever</span>
-            </>
-          }
+          title="Counting Down"
+          scriptTitle
           subtitle="The countdown has begun"
         />
 
@@ -160,7 +156,7 @@ export function Countdown() {
           />
 
           <motion.p
-            className="mt-8 text-center font-display text-base italic text-charcoal/50"
+            className="type-body-serif mt-8 text-center italic text-charcoal/50"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}

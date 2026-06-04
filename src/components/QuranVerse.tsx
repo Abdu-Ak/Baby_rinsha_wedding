@@ -8,7 +8,7 @@ export function QuranVerse() {
   const words = quranVerse.arabic.split(' ')
 
   return (
-    <section id="quran" className="quran-section relative overflow-hidden py-24 md:py-32">
+    <section id="quran" className="quran-section section-shell relative overflow-hidden">
       <div className="quran-section-bg pointer-events-none absolute inset-0">
         <img src={wedding.images.quran} alt="" loading="lazy" />
       </div>
@@ -16,7 +16,7 @@ export function QuranVerse() {
       <div className="pattern-bg pointer-events-none absolute inset-0 opacity-30" />
       <FloatingParticles className="opacity-20" />
 
-      <div className="relative mx-auto max-w-4xl px-6">
+      <div className="content-wrap relative max-w-4xl">
         <motion.div
           className="text-center"
           initial="hidden"
@@ -24,10 +24,10 @@ export function QuranVerse() {
           viewport={viewportOnce}
           variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
         >
-          <motion.p variants={fadeUp} custom={0} className="mb-3 text-xs uppercase tracking-[0.35em] text-brown-light">
+          <motion.p variants={fadeUp} custom={0} className="type-eyebrow mb-3 text-brown-light">
             From the Quran
           </motion.p>
-          <motion.p variants={fadeUp} custom={0.1} className="font-display mb-10 text-sm italic text-brown/50">
+          <motion.p variants={fadeUp} custom={0.1} className="type-body-serif mb-10 text-sm italic text-brown/50">
             {quranVerse.reference}
           </motion.p>
 
@@ -47,7 +47,7 @@ export function QuranVerse() {
             <span className="h-px w-12 bg-gradient-to-l from-transparent to-caramel/60 md:w-20" />
           </motion.div>
 
-          <blockquote className="quran-verse-arabic font-arabic mx-auto mb-10 max-w-3xl text-2xl leading-[2.2] md:text-3xl md:leading-[2.4] lg:text-4xl">
+          <blockquote className="quran-verse-arabic quran-arabic-size font-arabic mx-auto mb-10 max-w-3xl">
             {words.map((word, i) => (
               <motion.span
                 key={`${word}-${i}`}
@@ -69,12 +69,12 @@ export function QuranVerse() {
           <motion.p
             variants={fadeUp}
             custom={0.5}
-            className="font-display mx-auto max-w-2xl text-lg leading-relaxed italic text-brown/70 md:text-xl md:leading-relaxed"
+            className="type-body-serif mx-auto max-w-2xl italic text-brown/70"
           >
             &ldquo;{quranVerse.translation}&rdquo;
           </motion.p>
 
-          <motion.p variants={fadeUp} custom={0.6} className="mt-8 text-[10px] uppercase tracking-[0.3em] text-brown-light/70">
+          <motion.p variants={fadeUp} custom={0.6} className="type-caption mt-8 text-brown-light/70">
             — {quranVerse.surah} {quranVerse.ayah}
           </motion.p>
         </motion.div>
