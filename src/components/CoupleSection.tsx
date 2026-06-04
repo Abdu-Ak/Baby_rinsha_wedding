@@ -4,6 +4,7 @@ import { FloatingParticles } from './FloatingParticles'
 import { FloralAccent } from './FloralAccent'
 import { viewportOnce } from '../lib/motion'
 
+
 function CoupleCard({
   role,
   name,
