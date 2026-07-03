@@ -52,17 +52,19 @@ export function Footer() {
             {wedding.contact.hostLabel}
           </motion.p>
 
-          {wedding.contact.phone ? (
-            <motion.a
-              variants={staggerItem}
-              href={`tel:${wedding.contact.phone}`}
-              className="mb-10 inline-flex items-center gap-2 rounded-full border border-caramel/25 bg-linen px-5 py-2.5 text-base text-brown/90 transition-colors hover:border-caramel/50 hover:text-caramel"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <Phone className="h-4 w-4" />
-              {wedding.contact.phoneDisplay}
-            </motion.a>
+          {wedding.contact.phones.length > 0 ? (
+            <motion.div variants={staggerItem} className="mb-10 flex flex-wrap items-center justify-center gap-3">
+              {wedding.contact.phones.map(({ phone, phoneDisplay }) => (
+                <a
+                  key={phone}
+                  href={`tel:${phone}`}
+                  className="inline-flex items-center gap-2 rounded-full border border-caramel/25 bg-linen px-5 py-2.5 text-base text-brown/90 transition-colors hover:border-caramel/50 hover:text-caramel"
+                >
+                  <Phone className="h-4 w-4" />
+                  {phoneDisplay}
+                </a>
+              ))}
+            </motion.div>
           ) : null}
 
           <motion.p variants={staggerItem} className="type-caption text-brown/75">

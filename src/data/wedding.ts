@@ -54,6 +54,8 @@ export const wedding = {
   },
   images: {
     hero: '/images/hero-couple-veil.jpg',
+    introCouple: '/images/bg-couple.png',
+    coupleSection: '/images/couple-center.png',
     og: '/og-preview.png',
     quran:
       'https://images.unsplash.com/photo-1591604466107-d94487557561?auto=format&fit=crop&w=1920&q=80',
@@ -94,8 +96,11 @@ export const wedding = {
     ],
   },
   contact: {
-    phone: groom.phone,
-    phoneDisplay: groom.phoneDisplay,
     hostLabel: 'For enquiries, please contact the groom\'s family',
+    phones: [
+      { phone: groom.phone, phoneDisplay: groom.phoneDisplay },
+      { phone: '+919526440846', phoneDisplay: '+91 95264 40846' },
+      { phone: '+919526374444', phoneDisplay: '+91 95263 74444' },
+    ],
   },
 }

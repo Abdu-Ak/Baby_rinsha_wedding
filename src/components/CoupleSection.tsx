@@ -73,28 +73,23 @@ function CoupleCard({
   )
 }
 
-function CenterOrnament() {
+function CouplePortrait() {
   return (
     <motion.div
-      className="couple-center-ornament"
-      initial={{ opacity: 0, scale: 0.6 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={viewportOnce}
-      transition={{ duration: 0.9, delay: 0.35, type: 'spring', stiffness: 180 }}
+      className="couple-portrait"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.35 }}
+      transition={{ duration: 0.95, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
     >
-      <motion.div
-        className="couple-center-medallion"
-        animate={{
-          boxShadow: [
-            '0 0 0 0 rgba(196,168,130,0.25)',
-            '0 0 0 12px rgba(196,168,130,0)',
-            '0 0 0 0 rgba(196,168,130,0)',
-          ],
-        }}
-        transition={{ duration: 3, repeat: Infinity }}
-      >
-        <span className="font-display text-xl italic text-gold">&</span>
-      </motion.div>
+      <img
+        src={wedding.images.coupleSection}
+        alt={`${wedding.display.coupleShort} illustration`}
+        className="couple-portrait-img"
+        width={420}
+        height={560}
+        decoding="async"
+      />
     </motion.div>
   )
 }
@@ -111,9 +106,9 @@ export function CoupleSection() {
 
       <div className="pointer-events-none absolute left-1/2 top-0 h-px w-3/4 max-w-4xl -translate-x-1/2 bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
 
-      <div className="content-wrap relative max-w-5xl">
+      <div className="content-wrap relative max-w-6xl">
         <motion.div
-          className="couple-header mx-auto mb-10 text-center md:mb-12"
+          className="couple-header mx-auto mb-10 text-center md:mb-14"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={viewportOnce}
@@ -123,32 +118,47 @@ export function CoupleSection() {
           <p className="couple-header-subline">{wedding.invitation.subline}</p>
         </motion.div>
 
-        <div className="relative grid items-stretch gap-5 md:grid-cols-[1fr_auto_1fr] md:gap-6 lg:gap-8">
-          <CoupleCard
-            role="The Groom"
-            name={wedding.groom.name}
-            father={wedding.groom.father}
-            mother={wedding.groom.mother}
-            address={wedding.groom.address}
-            relation="S/o"
-            variant="groom"
-            monogram={wedding.groom.monogram}
-            delay={0.1}
-          />
+        <div className="couple-showcase-layout">
+          <CouplePortrait />
 
-          <CenterOrnament />
+          <div className="couple-cards-stack">
+            <CoupleCard
+              role="The Groom"
+              name={wedding.groom.name}
+              father={wedding.groom.father}
+              mother={wedding.groom.mother}
+              address={wedding.groom.address}
+              relation="S/o"
+              variant="groom"
+              monogram={wedding.groom.monogram}
+              delay={0.25}
+            />
 
-          <CoupleCard
-            role="The Bride"
-            name={wedding.bride.name}
-            father={wedding.bride.father}
-            mother={wedding.bride.mother}
-            address={wedding.bride.address}
-            relation="D/o"
-            variant="bride"
-            monogram={wedding.bride.monogram}
-            delay={0.2}
-          />
+            <motion.div
+              className="couple-cards-connector"
+              initial={{ opacity: 0, scale: 0.85 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={viewportOnce}
+              transition={{ duration: 0.6, delay: 0.45 }}
+              aria-hidden
+            >
+              <span className="couple-cards-connector-line" />
+              <span className="couple-cards-connector-amp">&</span>
+              <span className="couple-cards-connector-line" />
+            </motion.div>
+
+            <CoupleCard
+              role="The Bride"
+              name={wedding.bride.name}
+              father={wedding.bride.father}
+              mother={wedding.bride.mother}
+              address={wedding.bride.address}
+              relation="D/o"
+              variant="bride"
+              monogram={wedding.bride.monogram}
+              delay={0.35}
+            />
+          </div>
         </div>
       </div>
     </section>
