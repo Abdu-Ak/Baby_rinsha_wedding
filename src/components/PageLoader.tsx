@@ -65,6 +65,27 @@ export function PageLoader() {
             >
               <div className="envelope-intro__float">
                 <div className="envelope-intro__stage">
+                  <motion.div
+                    className="envelope-intro__couple"
+                    initial={{ opacity: 0, scale: 0.94, x: '-50%' }}
+                    animate={
+                      isOpening
+                        ? { opacity: 0.85, y: -28, scale: 1.02, x: '-50%' }
+                        : { opacity: 1, y: 0, scale: 1, x: '-50%' }
+                    }
+                    transition={{ duration: 0.9, delay: isOpening ? 0.2 : 0.15, ease: easePremium }}
+                    aria-hidden
+                  >
+                    <img
+                      src={wedding.images.introCouple}
+                      alt=""
+                      className="envelope-intro__couple-img"
+                      width={480}
+                      height={720}
+                      decoding="async"
+                    />
+                  </motion.div>
+
                   <div className="envelope-intro__shadow" aria-hidden />
 
                   <div className="envelope-intro__envelope">
@@ -77,8 +98,14 @@ export function PageLoader() {
                         animate={{
                           y: isOpening ? -96 : 22,
                           scale: isOpening ? 1.03 : 1,
+                          opacity: isOpening ? 1 : 0,
                         }}
-                        transition={{ duration: 0.9, delay: isOpening ? 0.35 : 0, ease: easePremium }}
+                        transition={{
+                          duration: 0.9,
+                          delay: isOpening ? 0.35 : 0,
+                          ease: easePremium,
+                          opacity: { duration: 0.3, delay: isOpening ? 0.4 : 0 },
+                        }}
                       >
                         <p className="envelope-intro__letter-eyebrow">Wedding Invitation</p>
                         <p className="envelope-intro__letter-initials">{wedding.display.initials}</p>
