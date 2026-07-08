@@ -46,11 +46,11 @@ export const wedding = {
   quranVerse: {
     surah: 'Az-Zumar',
     ayah: 6,
-    reference: 'Surah Az-Zumar · 39:6',
+    reference: 'Surah Al-Baqarah · 2:187',
     arabic:
-      'خَلَقَكُم مِّن نَّفْسٍ وَاحِدَةٍ ثُمَّ جَعَلَ مِنْهَا زَوْجَهَا لِيَسْكُنَ إِلَيْهَا',
+      'هُنَّ لِبَاسٌ لَّكُمْ وَأَنتُمْ لِبَاسٌ لَّهُنَّ',
     translation:
-      'He created you from a single soul, then made from it its mate, that you may find tranquility in one another.',
+      'They are a garment for you, and you are a garment for them.',
   },
   images: {
     hero: '/images/hero-couple-veil.jpg',

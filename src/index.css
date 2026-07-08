@@ -702,6 +702,9 @@ body {
 .quran-verse-arabic {
   color: var(--color-chocolate);
   text-shadow: 0 1px 20px rgba(62, 39, 35, 0.1);
+  direction: rtl;
+  unicode-bidi: plaintext;
+  text-align: center;
 }
 
 .scroll-progress {
