@@ -5,7 +5,6 @@ import { fadeUp, viewportOnce } from '../lib/motion'
 
 export function QuranVerse() {
   const { quranVerse } = wedding
-  const words = quranVerse.arabic.split(' ')
 
   return (
     <section id="quran" className="quran-section section-shell relative overflow-hidden">
@@ -47,19 +46,12 @@ export function QuranVerse() {
             <span className="h-px w-12 bg-gradient-to-l from-transparent to-caramel/60 md:w-20" />
           </motion.div>
 
-          <blockquote className="quran-verse-arabic quran-arabic-size font-arabic mx-auto mb-10 max-w-3xl">
-            {words.map((word, i) => (
-              <motion.span
-                key={`${word}-${i}`}
-                className="mx-1 inline-block"
-                initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
-                whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                viewport={viewportOnce}
-                transition={{ delay: i * 0.04, duration: 0.5 }}
-              >
-                {word}
-              </motion.span>
-            ))}
+          <blockquote
+            className="quran-verse-arabic quran-arabic-size font-arabic mx-auto mb-10 max-w-3xl"
+            lang="ar"
+            dir="rtl"
+          >
+            {quranVerse.arabic}
           </blockquote>
 
           <motion.div variants={fadeUp} custom={0.4} className="divider-ornament mb-10">
