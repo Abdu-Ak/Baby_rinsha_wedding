@@ -1,55 +1,65 @@
-import { useEffect, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
-import { wedding } from '../data/wedding'
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
+import { wedding } from "../data/wedding";
 
 const links = [
-  { href: '#home', label: 'Home' },
-  { href: '#couple', label: 'The Couple' },
-  { href: '#venue', label: 'Venue' },
+  { href: "#home", label: "Home" },
+  { href: "#couple", label: "The Couple" },
+  { href: "#venue", label: "Venue" },
   // { href: '#story', label: 'Our Story' },
-  { href: '#contact', label: 'Contact' },
-]
+  // { href: '#contact', label: 'Contact' },
+];
 
-function NavLink({ href, label, onClick, scrolled }: { href: string; label: string; onClick?: () => void; scrolled: boolean }) {
+function NavLink({
+  href,
+  label,
+  onClick,
+  scrolled,
+}: {
+  href: string;
+  label: string;
+  onClick?: () => void;
+  scrolled: boolean;
+}) {
   return (
     <a href={href} onClick={onClick} className="nav-link group relative py-1">
       <span
         className={`text-xs uppercase tracking-[0.2em] transition-colors group-hover:text-chocolate-light ${
-          scrolled ? 'text-chocolate/70' : 'text-chocolate/80'
+          scrolled ? "text-chocolate/70" : "text-chocolate/80"
         }`}
       >
         {label}
       </span>
       <span className="nav-link-underline absolute -bottom-0.5 left-0 h-px w-0 bg-chocolate-light transition-all duration-300 group-hover:w-full" />
     </a>
-  )
+  );
 }
 
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50)
-    window.addEventListener('scroll', onScroll)
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+    const onScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : ''
+    document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => {
-      document.body.style.overflow = ''
-    }
-  }, [menuOpen])
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
 
   return (
     <>
       <motion.nav
         className={`fixed top-[2px] left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? 'bg-linen/95 py-3 shadow-sm shadow-black/30 backdrop-blur-md'
-            : 'bg-transparent py-5'
+            ? "bg-linen/95 py-3 shadow-sm shadow-black/30 backdrop-blur-md"
+            : "bg-transparent py-5"
         }`}
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -77,7 +87,11 @@ export function Navbar() {
             aria-label="Toggle menu"
             whileTap={{ scale: 0.9 }}
           >
-            {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            {menuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
           </motion.button>
         </div>
       </motion.nav>
@@ -97,8 +111,8 @@ export function Navbar() {
                 href={link.href}
                 className="font-display py-4 text-2xl text-brown"
                 onClick={() => setMenuOpen(false)}
-                initial={{ opacity: 0, y: 30, filter: 'blur(4px)' }}
-                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                initial={{ opacity: 0, y: 30, filter: "blur(4px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ delay: index * 0.08, duration: 0.4 }}
               >
@@ -109,5 +123,5 @@ export function Navbar() {
         )}
       </AnimatePresence>
     </>
-  )
+  );
 }

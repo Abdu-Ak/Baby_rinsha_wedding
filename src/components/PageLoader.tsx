@@ -1,39 +1,41 @@
-import { useCallback, useEffect, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { wedding } from '../data/wedding'
-import { easePremium } from '../lib/motion'
+import { useCallback, useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { wedding } from "../data/wedding";
+import { easePremium } from "../lib/motion";
 
-type Phase = 'idle' | 'opening'
+type Phase = "idle" | "opening";
 
 export function PageLoader() {
-  const [visible, setVisible] = useState(() => !sessionStorage.getItem('wedding-intro-shown'))
-  const [phase, setPhase] = useState<Phase>('idle')
+  const [visible, setVisible] = useState(
+    () => !sessionStorage.getItem("wedding-intro-shown"),
+  );
+  const [phase, setPhase] = useState<Phase>("idle");
 
   useEffect(() => {
-    if (!visible) return
-    const previousOverflow = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
+    if (!visible) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
     return () => {
-      document.body.style.overflow = previousOverflow
-    }
-  }, [visible])
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [visible]);
 
   const openInvitation = useCallback(() => {
-    if (phase !== 'idle') return
-    setPhase('opening')
+    if (phase !== "idle") return;
+    setPhase("opening");
     window.setTimeout(() => {
-      sessionStorage.setItem('wedding-intro-shown', '1')
-      setVisible(false)
-    }, 2600)
-  }, [phase])
+      sessionStorage.setItem("wedding-intro-shown", "1");
+      setVisible(false);
+    }, 2600);
+  }, [phase]);
 
-  const isOpening = phase === 'opening'
+  const isOpening = phase === "opening";
 
   return (
     <AnimatePresence>
       {visible && (
         <motion.div
-          className="envelope-intro fixed inset-0 z-[100] flex flex-col items-center justify-center bg-linen"
+          className="envelope-intro fixed inset-0 z-100 flex flex-col items-center justify-center bg-linen"
           initial={{ opacity: 1 }}
           animate={{ opacity: isOpening ? 0 : 1 }}
           exit={{ opacity: 0 }}
@@ -58,7 +60,7 @@ export function PageLoader() {
           >
             <button
               type="button"
-              className={`envelope-intro__trigger ${isOpening ? 'envelope-intro__trigger--opening' : ''}`}
+              className={`envelope-intro__trigger ${isOpening ? "envelope-intro__trigger--opening" : ""}`}
               onClick={openInvitation}
               disabled={isOpening}
               aria-label="Open wedding invitation"
@@ -67,13 +69,17 @@ export function PageLoader() {
                 <div className="envelope-intro__stage">
                   <motion.div
                     className="envelope-intro__couple"
-                    initial={{ opacity: 0, scale: 0.94, x: '-50%' }}
+                    initial={{ opacity: 0, scale: 0.94, x: "-50%" }}
                     animate={
                       isOpening
-                        ? { opacity: 0.85, y: -28, scale: 1.02, x: '-50%' }
-                        : { opacity: 1, y: 0, scale: 1, x: '-50%' }
+                        ? { opacity: 0.85, y: -28, scale: 1.02, x: "-50%" }
+                        : { opacity: 1, y: 0, scale: 1, x: "-50%" }
                     }
-                    transition={{ duration: 0.9, delay: isOpening ? 0.2 : 0.15, ease: easePremium }}
+                    transition={{
+                      duration: 0.9,
+                      delay: isOpening ? 0.2 : 0.15,
+                      ease: easePremium,
+                    }}
                     aria-hidden
                   >
                     <img
@@ -104,13 +110,25 @@ export function PageLoader() {
                           duration: 0.9,
                           delay: isOpening ? 0.35 : 0,
                           ease: easePremium,
-                          opacity: { duration: 0.3, delay: isOpening ? 0.4 : 0 },
+                          opacity: {
+                            duration: 0.3,
+                            delay: isOpening ? 0.4 : 0,
+                          },
                         }}
                       >
-                        <p className="envelope-intro__letter-eyebrow">Wedding Invitation</p>
-                        <p className="envelope-intro__letter-initials">{wedding.display.initials}</p>
-                        <div className="envelope-intro__letter-rule" aria-hidden />
-                        <p className="envelope-intro__letter-date">29 July 2026</p>
+                        <p className="envelope-intro__letter-eyebrow">
+                          Wedding Invitation
+                        </p>
+                        <p className="envelope-intro__letter-initials">
+                          {wedding.display.initials}
+                        </p>
+                        <div
+                          className="envelope-intro__letter-rule"
+                          aria-hidden
+                        />
+                        <p className="envelope-intro__letter-date">
+                          09 August 2026
+                        </p>
                       </motion.div>
                     </div>
 
@@ -132,7 +150,9 @@ export function PageLoader() {
                         transition={{ duration: 0.4, ease: easePremium }}
                         aria-hidden
                       >
-                        <span className="envelope-intro__seal-text">{wedding.display.initials}</span>
+                        <span className="envelope-intro__seal-text">
+                          {wedding.display.initials}
+                        </span>
                       </motion.div>
                     </div>
                   </div>
@@ -150,7 +170,7 @@ export function PageLoader() {
               transition={
                 isOpening
                   ? { duration: 0.35 }
-                  : { duration: 2.4, repeat: Infinity, ease: 'easeInOut' }
+                  : { duration: 2.4, repeat: Infinity, ease: "easeInOut" }
               }
             >
               Tap to open
@@ -159,5 +179,5 @@ export function PageLoader() {
         </motion.div>
       )}
     </AnimatePresence>
-  )
+  );
 }

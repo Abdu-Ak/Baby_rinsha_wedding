@@ -1,21 +1,30 @@
-import { motion } from 'framer-motion'
-import { ExternalLink, MapPin, Navigation } from 'lucide-react'
-import { wedding } from '../data/wedding'
-import { FloatingParticles } from './FloatingParticles'
-import { FloralAccent } from './FloralAccent'
-import { slideInLeft, slideInRight, viewportOnce } from '../lib/motion'
+import { motion } from "framer-motion";
+import { ExternalLink, MapPin, Navigation } from "lucide-react";
+import { wedding } from "../data/wedding";
+import { FloatingParticles } from "./FloatingParticles";
+import { FloralAccent } from "./FloralAccent";
+import { slideInLeft, slideInRight, viewportOnce } from "../lib/motion";
 
 export function Location() {
-  const { venue } = wedding
+  const { venue } = wedding;
 
   return (
-    <section id="venue" className="venue-section section-shell relative overflow-hidden">
+    <section
+      id="venue"
+      className="venue-section section-shell relative overflow-hidden"
+    >
       <div className="venue-section-bg pointer-events-none absolute inset-0" />
       <div className="pattern-bg pointer-events-none absolute inset-0 opacity-20" />
       <FloatingParticles className="opacity-30" />
 
-      <FloralAccent position="top-left" className="left-4 top-16 opacity-30 md:left-10" />
-      <FloralAccent position="bottom-right" className="bottom-8 right-4 opacity-25 md:right-10" />
+      <FloralAccent
+        position="top-left"
+        className="left-4 top-16 opacity-30 md:left-10"
+      />
+      <FloralAccent
+        position="bottom-right"
+        className="bottom-8 right-4 opacity-25 md:right-10"
+      />
 
       <div className="content-wrap relative">
         <motion.div
@@ -25,9 +34,15 @@ export function Location() {
           viewport={viewportOnce}
           transition={{ duration: 0.8 }}
         >
-          <p className="venue-header-label type-eyebrow">{wedding.sections.venue.label}</p>
-          <h2 className="font-script venue-header-title">{wedding.sections.venue.title}</h2>
-          <p className="venue-header-subtitle type-body-serif text-base">{wedding.sections.venue.subtitle}</p>
+          <p className="venue-header-label type-eyebrow">
+            {wedding.sections.venue.label}
+          </p>
+          <h2 className="font-script venue-header-title">
+            {wedding.sections.venue.title}
+          </h2>
+          <p className="venue-header-subtitle type-body-serif text-base">
+            {wedding.sections.venue.subtitle}
+          </p>
         </motion.div>
 
         <div className="grid items-center gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-10">
@@ -81,17 +96,6 @@ export function Location() {
                   <Navigation className="h-4 w-4" />
                   Get Directions
                 </motion.a>
-                <motion.a
-                  href={venue.mapsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="venue-btn venue-btn-secondary"
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <ExternalLink className="h-4 w-4" />
-                  Open in Maps
-                </motion.a>
               </div>
             </div>
           </motion.div>
@@ -127,11 +131,14 @@ export function Location() {
                   initial={{ y: -8, opacity: 0 }}
                   whileInView={{ y: 0, opacity: 1 }}
                   viewport={viewportOnce}
-                  transition={{ delay: 0.35, type: 'spring', stiffness: 200 }}
+                  transition={{ delay: 0.35, type: "spring", stiffness: 200 }}
                 >
                   <span className="venue-map-pin-pulse" aria-hidden />
                   <span className="venue-map-pin-dot">
-                    <MapPin className="h-5 w-5 text-linen" fill="currentColor" />
+                    <MapPin
+                      className="h-5 w-5 text-linen"
+                      fill="currentColor"
+                    />
                   </span>
                 </motion.div>
               </div>
@@ -145,5 +152,5 @@ export function Location() {
         </div>
       </div>
     </section>
-  )
+  );
 }
