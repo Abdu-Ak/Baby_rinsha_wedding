@@ -94,11 +94,11 @@ export const wedding = {
     ],
   },
   contact: {
-    hostLabel: "For enquiries, please contact the groom's family",
+    hostLabel: "For enquiries, please contact the bride's family",
     phones: [
-      { phone: groom.phone, phoneDisplay: groom.phoneDisplay },
-      { phone: "+919526440846", phoneDisplay: "+91 95264 40846" },
-      { phone: "+919526374444", phoneDisplay: "+91 95263 74444" },
+      // { phone: groom.phone, phoneDisplay: groom.phoneDisplay },
+      { phone: "+917592978136", phoneDisplay: "+91 75929 78136" },
+      // { phone: "+919526374444", phoneDisplay: "+91 95263 74444" },
     ],
   },
 };

@@ -69,12 +69,18 @@ export function Footer() {
             {wedding.story.paragraphs[1]}
           </motion.p>
 
-          {/* <motion.p variants={staggerItem} className="type-caption mb-6 text-brown/85">
+          <motion.p
+            variants={staggerItem}
+            className="type-caption mb-6 text-brown/85"
+          >
             {wedding.contact.hostLabel}
-          </motion.p> */}
+          </motion.p>
 
-          {/* {wedding.contact.phones.length > 0 ? (
-            <motion.div variants={staggerItem} className="mb-10 flex flex-wrap items-center justify-center gap-3">
+          {wedding.contact.phones.length > 0 ? (
+            <motion.div
+              variants={staggerItem}
+              className="mb-10 flex flex-wrap items-center justify-center gap-3"
+            >
               {wedding.contact.phones.map(({ phone, phoneDisplay }) => (
                 <a
                   key={phone}
@@ -86,7 +92,7 @@ export function Footer() {
                 </a>
               ))}
             </motion.div>
-          ) : null} */}
+          ) : null}
 
           <motion.p
             variants={staggerItem}

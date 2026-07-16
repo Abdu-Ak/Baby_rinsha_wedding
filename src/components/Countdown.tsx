@@ -1,46 +1,25 @@
-import { useEffect, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { wedding } from '../data/wedding'
-import { SectionHeading } from './SectionHeading'
-import { FloatingParticles } from './FloatingParticles'
+import { motion } from "framer-motion";
+import { wedding } from "../data/wedding";
+import { SectionHeading } from "./SectionHeading";
+import { FloatingParticles } from "./FloatingParticles";
 
-interface TimeLeft {
-  days: number
-  hours: number
-  minutes: number
-  seconds: number
-}
+function DateDisplay() {
+  // Extract "09 August 2026" from the dateDisplay like "Monday, 09 August 2026"
+  const dateParts = wedding.dateDisplay.split(", ");
+  const dateString = dateParts.length > 1 ? dateParts[1] : wedding.dateDisplay;
 
-function calculateTimeLeft(): TimeLeft {
-  const difference = new Date(wedding.weddingDate).getTime() - Date.now()
-
-  if (difference <= 0) {
-    return { days: 0, hours: 0, minutes: 0, seconds: 0 }
-  }
-
-  return {
-    days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-    hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-    minutes: Math.floor((difference / (1000 * 60)) % 60),
-    seconds: Math.floor((difference / 1000) % 60),
-  }
-}
-
-const units = [
-  { key: 'days', label: 'Days' },
-  { key: 'hours', label: 'Hours' },
-  { key: 'minutes', label: 'Minutes' },
-  { key: 'seconds', label: 'Seconds' },
-] as const
-
-function CountdownDigit({ value, label, index }: { value: number; label: string; index: number }) {
   return (
     <motion.div
-      className="countdown-card group relative"
+      className="countdown-card group relative mx-auto max-w-md"
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.7, delay: index * 0.12, type: 'spring', stiffness: 400, damping: 25 }}
+      transition={{
+        duration: 0.7,
+        type: "spring",
+        stiffness: 400,
+        damping: 25,
+      }}
       whileHover={{ y: -4 }}
     >
       {/* Corner ornaments */}
@@ -49,21 +28,18 @@ function CountdownDigit({ value, label, index }: { value: number; label: string;
       <span className="absolute bottom-3 left-3 h-3 w-3 border-b border-l border-gold/40" />
       <span className="absolute bottom-3 right-3 h-3 w-3 border-b border-r border-gold/40" />
 
-      <div className="relative px-4 py-7 md:px-5 md:py-8">
-        <AnimatePresence mode="popLayout">
-          <motion.span
-            key={value}
-            className="countdown-digit block"
-            initial={{ opacity: 0, y: 12, filter: 'blur(4px)' }}
-            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            exit={{ opacity: 0, y: -12, filter: 'blur(4px)' }}
-            transition={{ duration: 0.35 }}
-          >
-            {String(value).padStart(2, '0')}
-          </motion.span>
-        </AnimatePresence>
-        <span className="countdown-unit-label mt-3 block text-gold">
-          {label}
+      <div className="relative px-4 py-10 md:px-5 md:py-12 text-center">
+        <motion.span
+          className="countdown-digit block text-4xl tracking-wider md:text-5xl lg:text-6xl"
+          initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          {dateString}
+        </motion.span>
+        <span className="type-body-serif mt-4 block text-lg text-gold md:text-xl">
+          The Big Day
         </span>
       </div>
 
@@ -72,20 +48,16 @@ function CountdownDigit({ value, label, index }: { value: number; label: string;
         <div className="absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
       </div>
     </motion.div>
-  )
+  );
 }
 
 export function Countdown() {
-  const [timeLeft, setTimeLeft] = useState<TimeLeft>(calculateTimeLeft)
-
-  useEffect(() => {
-    const timer = setInterval(() => setTimeLeft(calculateTimeLeft()), 1000)
-    return () => clearInterval(timer)
-  }, [])
-
   return (
     <section className="countdown-section relative z-20 bg-cream pattern-bg">
-      <div className="absolute -top-px left-0 right-0 h-px bg-cream" aria-hidden />
+      <div
+        className="absolute -top-px left-0 right-0 h-px bg-cream"
+        aria-hidden
+      />
       <FloatingParticles className="opacity-50" />
 
       {/* Soft ambient glows */}
@@ -125,28 +97,16 @@ export function Countdown() {
       <div className="content-wrap relative py-16 md:py-20">
         <SectionHeading
           label="Save the Date"
-          title="Counting Down"
+          title="The Big Day"
           scriptTitle
-          subtitle="The countdown has begun"
+          subtitle="A date to remember"
         />
 
-        {/* Timer grid */}
+        {/* Date card */}
         <div className="relative mx-auto max-w-3xl">
-          <div className="grid grid-cols-2 gap-4 sm:gap-5 md:grid-cols-4 md:gap-4">
-            {units.map(({ key, label }, index) => (
-              <div key={key} className="relative">
-                <CountdownDigit value={timeLeft[key]} label={label} index={index} />
-                {/* Colon separators on desktop */}
-                {index < units.length - 1 && (
-                  <span className="absolute -right-3 top-1/2 hidden -translate-y-1/2 font-display text-3xl text-gold/30 md:block">
-                    :
-                  </span>
-                )}
-              </div>
-            ))}
-          </div>
+          <DateDisplay />
 
-          {/* Connecting line beneath cards */}
+          {/* Connecting line beneath card */}
           <motion.div
             className="mx-auto mt-10 h-px max-w-md bg-gradient-to-r from-transparent via-gold/40 to-transparent"
             initial={{ scaleX: 0 }}
@@ -162,10 +122,10 @@ export function Countdown() {
             viewport={{ once: true }}
             transition={{ delay: 0.7 }}
           >
-            We can&apos;t wait to celebrate with you
+            We can't wait to celebrate with you
           </motion.p>
         </div>
       </div>
     </section>
-  )
+  );
 }
