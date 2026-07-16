@@ -55,7 +55,7 @@ export const wedding = {
     hero: "/images/hero-couple-veil.jpg",
     introCouple: "/images/bg-couple.png",
     coupleSection: "/images/couple-center.png",
-    og: "/og-preview.png",
+    og: "/og-preview.jpeg",
     quran:
       "https://images.unsplash.com/photo-1591604466107-d94487557561?auto=format&fit=crop&w=1920&q=80",
   },
