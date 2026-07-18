@@ -171,16 +171,16 @@ export function Hero() {
         </motion.div>
 
         <motion.p
-          className="type-eyebrow hero-invite-line mb-3 text-brown"
+          className="type-tracked-caps hero-invite-line mb-3 text-brown"
           initial={{ opacity: 0, letterSpacing: "0.1em" }}
-          animate={{ opacity: 1, letterSpacing: "0.28em" }}
+          animate={{ opacity: 1, letterSpacing: "0.32em" }}
           transition={{ duration: 1.5, delay: 0.8 }}
         >
           {wedding.invitation.headline}
         </motion.p>
 
         <motion.p
-          className="hero-subline-serif mx-auto mb-8 max-w-md italic text-brown/90"
+          className="type-tracked-caps--lg mx-auto mb-8 max-w-md"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.95, duration: 0.8 }}
@@ -195,7 +195,7 @@ export function Hero() {
           transition={{ duration: 1, delay: 1.1, ease: [0.22, 1, 0.36, 1] }}
         >
           <HeroName name={wedding.groom.name} />
-          <p className="hero-amp font-display" aria-hidden>
+          <p className="hero-amp" aria-hidden>
             &
           </p>
           <HeroName name={wedding.bride.name} />

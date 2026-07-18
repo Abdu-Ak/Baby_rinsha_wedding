@@ -3,51 +3,134 @@ import { wedding } from "../data/wedding";
 import { SectionHeading } from "./SectionHeading";
 import { FloatingParticles } from "./FloatingParticles";
 
+function getDayName(dateDisplay: string): string {
+  const [, rest = ""] = dateDisplay.split(", ");
+  if (rest) {
+    const parsed = new Date(rest);
+    if (!isNaN(parsed.getTime())) {
+      return parsed
+        .toLocaleDateString("en-US", { weekday: "long" })
+        .toUpperCase();
+    }
+  }
+  return (dateDisplay.split(", ")[0] ?? "").toUpperCase();
+}
+
+function parseDateParts(dateDisplay: string) {
+  const [, rest = ""] = dateDisplay.split(", ");
+  const parts = rest.split(" ");
+  return {
+    day: parts[0] ?? "09",
+    month: (parts[1] ?? "August").toUpperCase(),
+    year: parts[2] ?? "2026",
+  };
+}
+
 function DateDisplay() {
-  // Extract "09 August 2026" from the dateDisplay like "Monday, 09 August 2026"
-  const dateParts = wedding.dateDisplay.split(", ");
-  const dateString = dateParts.length > 1 ? dateParts[1] : wedding.dateDisplay;
+  const { day, month, year } = parseDateParts(wedding.dateDisplay);
+  const dayName = getDayName(wedding.dateDisplay);
+
+  const cardBase =
+    "date-box-card relative flex flex-col items-center justify-center text-center group overflow-hidden";
 
   return (
-    <motion.div
-      className="countdown-card group relative mx-auto max-w-md"
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{
-        duration: 0.7,
-        type: "spring",
-        stiffness: 400,
-        damping: 25,
-      }}
-      whileHover={{ y: -4 }}
-    >
-      {/* Corner ornaments */}
-      <span className="absolute left-3 top-3 h-3 w-3 border-l border-t border-gold/40" />
-      <span className="absolute right-3 top-3 h-3 w-3 border-r border-t border-gold/40" />
-      <span className="absolute bottom-3 left-3 h-3 w-3 border-b border-l border-gold/40" />
-      <span className="absolute bottom-3 right-3 h-3 w-3 border-b border-r border-gold/40" />
-
-      <div className="relative px-4 py-10 md:px-5 md:py-12 text-center">
-        <motion.span
-          className="countdown-digit block text-4xl tracking-wider md:text-5xl lg:text-6xl"
-          initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+    <div className="date-section-wrap flex flex-col items-center gap-8">
+      {/* ── Day-of-week badge ── */}
+      <motion.div
+        className="flex items-center gap-5"
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.55, delay: 0.05 }}
+      >
+        <span className="h-px w-16 bg-gradient-to-r from-transparent to-gold/55 md:w-28" />
+        <p
+          className="engraved-monogram tracking-widest"
+          style={{ fontSize: "clamp(1rem, 2.2vw, 1.4rem)" }}
         >
-          {dateString}
-        </motion.span>
-        <span className="type-body-serif mt-4 block text-lg text-gold md:text-xl">
-          The Big Day
-        </span>
-      </div>
+          {dayName}
+        </p>
+        <span className="h-px w-16 bg-gradient-to-l from-transparent to-gold/55 md:w-28" />
+      </motion.div>
 
-      {/* Shimmer on hover */}
-      <div className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-        <div className="absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
+      {/* ── 3 Date Boxes ── */}
+      <div className="date-boxes-grid">
+        {/* Box 1 — 09 */}
+        <motion.div
+          className={cardBase}
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{
+            duration: 0.65,
+            delay: 0.12,
+            type: "spring",
+            stiffness: 280,
+            damping: 26,
+          }}
+          whileHover={{ y: -6 }}
+        >
+          <span className="date-box-corner tl" />
+          <span className="date-box-corner tr" />
+          <span className="date-box-corner bl" />
+          <span className="date-box-corner br" />
+          <span className="date-box-top-line" />
+
+          <p className="type-tracked-caps mb-2 opacity-70">Date</p>
+          <p className="engraved-monogram date-box-value">{day}</p>
+        </motion.div>
+
+        {/* Box 2 — AUGUST */}
+        <motion.div
+          className={cardBase}
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{
+            duration: 0.65,
+            delay: 0.22,
+            type: "spring",
+            stiffness: 280,
+            damping: 26,
+          }}
+          whileHover={{ y: -6 }}
+        >
+          <span className="date-box-corner tl" />
+          <span className="date-box-corner tr" />
+          <span className="date-box-corner bl" />
+          <span className="date-box-corner br" />
+          <span className="date-box-top-line" />
+
+          <p className="type-tracked-caps mb-2 opacity-70">Month</p>
+          <p className="engraved-monogram date-box-value">{month}</p>
+        </motion.div>
+
+        {/* Box 3 — 2026 */}
+        <motion.div
+          className={cardBase}
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{
+            duration: 0.65,
+            delay: 0.32,
+            type: "spring",
+            stiffness: 280,
+            damping: 26,
+          }}
+          whileHover={{ y: -6 }}
+        >
+          <span className="date-box-corner tl" />
+          <span className="date-box-corner tr" />
+          <span className="date-box-corner bl" />
+          <span className="date-box-corner br" />
+          <span className="date-box-top-line" />
+
+          <p className="type-tracked-caps mb-2 opacity-70">Year</p>
+          <p className="engraved-monogram date-box-value">{year}</p>
+        </motion.div>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -60,13 +143,11 @@ export function Countdown() {
       />
       <FloatingParticles className="opacity-50" />
 
-      {/* Soft ambient glows */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -left-20 top-1/4 h-64 w-64 rounded-full bg-gold/10 blur-3xl" />
         <div className="absolute -right-20 bottom-1/4 h-72 w-72 rounded-full bg-rose/10 blur-3xl" />
       </div>
 
-      {/* Decorative side flourishes */}
       <div className="pointer-events-none absolute left-4 top-1/2 hidden -translate-y-1/2 opacity-20 md:block lg:left-12">
         <svg width="40" height="200" viewBox="0 0 40 200" fill="none">
           <path
@@ -100,15 +181,15 @@ export function Countdown() {
           title="The Big Day"
           scriptTitle
           subtitle="A date to remember"
+          noDivider={true}
+          mainClassName="mb-6 text-center md:mb-8"
         />
 
-        {/* Date card */}
-        <div className="relative mx-auto max-w-3xl">
+        <div className="relative mx-auto max-w-2xl">
           <DateDisplay />
 
-          {/* Connecting line beneath card */}
           <motion.div
-            className="mx-auto mt-10 h-px max-w-md bg-gradient-to-r from-transparent via-gold/40 to-transparent"
+            className="mx-auto mt-12 h-px max-w-sm bg-gradient-to-r from-transparent via-gold/40 to-transparent"
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
@@ -122,7 +203,7 @@ export function Countdown() {
             viewport={{ once: true }}
             transition={{ delay: 0.7 }}
           >
-            We can't wait to celebrate with you
+            We can&apos;t wait to celebrate with you
           </motion.p>
         </div>
       </div>

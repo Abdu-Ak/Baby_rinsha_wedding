@@ -3,16 +3,16 @@ const bride = {
   shortName: "Rinsha",
   father: "Jabir",
   mother: "Sumayya",
-  address: "Madathingal house, south puthalam, areakode, malappuram",
+  address: "Madathingal House, South Puthalam, Areekode, Malappuram",
   monogram: "R",
 };
 
 const groom = {
   name: "Fasil Nalakath",
   shortName: "Fasil",
-  father: "Akbar EP",
-  mother: "Sakeena V",
-  address: "Bicha's, Idiyangara, Malappuram",
+  father: "Abdul Shukoor Nalakath",
+  mother: "Hafsa Machingal",
+  address: "Nalakath House, Puthalam, Areekode, Malappuram",
   monogram: "F",
   phone: "+917902905061",
   phoneDisplay: "+91 79029 05061",
@@ -31,7 +31,7 @@ export const wedding = {
     ogSiteName: `${groom.shortName} & ${bride.shortName} Wedding`,
   },
   weddingDate: "2026-07-29T11:00:00",
-  dateDisplay: "Monday, 09 August 2026",
+  dateDisplay: "Sunday, 09 August 2026",
   schedule: {
     receptionLabel: "Reception",
   },
@@ -53,8 +53,8 @@ export const wedding = {
   },
   images: {
     hero: "/images/hero-couple-veil.jpg",
-    introCouple: "/images/bg-couple.png",
-    coupleSection: "/images/couple-center.png",
+    introCouple: "/images/couple_without_bg.png",
+    coupleSection: "/images/couple2_without_bg.png",
     og: "/og-preview.jpeg",
     quran:
       "https://images.unsplash.com/photo-1591604466107-d94487557561?auto=format&fit=crop&w=1920&q=80",

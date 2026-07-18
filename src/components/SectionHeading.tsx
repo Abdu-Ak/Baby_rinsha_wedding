@@ -1,6 +1,6 @@
-import type { ReactNode } from 'react'
-import { motion } from 'framer-motion'
-import { fadeUp, viewportOnce } from '../lib/motion'
+import type { ReactNode } from "react";
+import { motion } from "framer-motion";
+import { fadeUp, viewportOnce } from "../lib/motion";
 
 export function SectionHeading({
   label,
@@ -8,16 +8,20 @@ export function SectionHeading({
   subtitle,
   light = false,
   scriptTitle = false,
+  noDivider = false,
+  mainClassName = "mb-12 text-center md:mb-14",
 }: {
-  label: string
-  title: ReactNode
-  subtitle?: string
-  light?: boolean
-  scriptTitle?: boolean
+  label: string;
+  title: ReactNode;
+  subtitle?: string;
+  light?: boolean;
+  scriptTitle?: boolean;
+  noDivider?: boolean;
+  mainClassName?: string;
 }) {
   return (
     <motion.div
-      className="mb-12 text-center md:mb-14"
+      className={mainClassName}
       initial="hidden"
       whileInView="visible"
       viewport={viewportOnce}
@@ -26,7 +30,7 @@ export function SectionHeading({
       <motion.p
         variants={fadeUp}
         custom={0}
-        className={`type-eyebrow mb-3 ${light ? 'text-gold/80' : 'text-gold'}`}
+        className={`type-eyebrow mb-3 ${light ? "text-gold/80" : "text-gold"}`}
       >
         {label}
       </motion.p>
@@ -34,7 +38,7 @@ export function SectionHeading({
         variants={fadeUp}
         custom={0.1}
         className={`${
-          scriptTitle ? 'type-section-script' : 'type-section-display'
+          scriptTitle ? "type-section-script" : "type-section-display"
         }`}
       >
         {title}
@@ -44,15 +48,21 @@ export function SectionHeading({
           variants={fadeUp}
           custom={0.2}
           className={`type-body-serif mx-auto mt-4 max-w-xl italic ${
-            light ? 'text-brown/85' : 'text-brown/85'
+            light ? "text-brown/85" : "text-brown/85"
           }`}
         >
           {subtitle}
         </motion.p>
       )}
-      <motion.div variants={fadeUp} custom={0.3} className="divider-ornament mt-8">
-        <span className="text-gold/90">✦</span>
-      </motion.div>
+      {!noDivider && (
+        <motion.div
+          variants={fadeUp}
+          custom={0.3}
+          className="divider-ornament mt-8"
+        >
+          <span className="text-gold/90">✦</span>
+        </motion.div>
+      )}
     </motion.div>
-  )
+  );
 }

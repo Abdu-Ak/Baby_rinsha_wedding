@@ -64,9 +64,9 @@ export function Location() {
                 <MapPin className="h-6 w-6 text-gold" strokeWidth={1.5} />
               </div>
 
-              <p className="venue-info-eyebrow">You&apos;re invited to</p>
+              <p className="venue-info-eyebrow type-tracked-caps">You&apos;re invited to</p>
               <h3 className="font-display venue-info-name">{venue.name}</h3>
-              <p className="venue-info-area">
+              <p className="venue-info-area type-tracked-caps--lg">
                 {venue.area}, {venue.city}
               </p>
 

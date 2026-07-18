@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @theme {
   /* Light brown & warm neutral palette */
@@ -37,11 +37,21 @@
   --color-sage: #5c6b52;
   --color-sage-dark: #4a5742;
 
-  --font-display: 'Cormorant Garamond', Georgia, serif;
-  --font-script: 'Great Vibes', cursive;
-  --font-hero-script: 'Allura', cursive;
-  --font-body: 'Outfit', system-ui, sans-serif;
-  --font-arabic: 'Amiri', serif;
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-script: "Great Vibes", cursive;
+  --font-hero-script: "Allura", cursive;
+  --font-body: "Outfit", system-ui, sans-serif;
+  --font-arabic: "Amiri", serif;
+  --font-engraved: "Cinzel", "Trajan Pro", "Times New Roman", serif;
+  --font-engraved-deco: "Cinzel Decorative", "Cinzel", serif;
+
+  /* Metallic foil palette */
+  --gold-shadow:     #6b5a46;
+  --gold-base:       #96846b;
+  --gold-mid:        #a39278;
+  --gold-highlight:  #c4ae90;
+  --gold-sheen:      #daccb6;
+  --champagne-bg:    #f7f2ea;
 
   /* Premium type scale */
   --text-eyebrow: 0.75rem;
@@ -168,11 +178,18 @@ body {
 
 .divider-ornament::before,
 .divider-ornament::after {
-  content: '';
+  content: "";
   flex: 1;
   max-width: 120px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--color-chocolate-light), var(--color-caramel), var(--color-chocolate-light), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-chocolate-light),
+    var(--color-caramel),
+    var(--color-chocolate-light),
+    transparent
+  );
 }
 
 @keyframes float {
@@ -234,13 +251,20 @@ body {
 }
 
 .countdown-card::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 12%;
   right: 12%;
   top: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent, #b8956f, #e8d5c4, #b8956f, transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #b8956f,
+    #e8d5c4,
+    #b8956f,
+    transparent
+  );
   border-radius: 0 0 4px 4px;
   opacity: 0.7;
 }
@@ -259,6 +283,114 @@ body {
   line-height: 1;
   color: #3e2723;
 }
+
+/* ══════════════════════════════════════════════════════
+   Premium 3-Box Date Section  (09 | AUGUST | 2026)
+   ══════════════════════════════════════════════════════ */
+
+/* Wrapper – centers everything */
+.date-section-wrap {
+  width: 100%;
+}
+
+/* Row of 3 boxes */
+.date-boxes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr 1fr;   /* month box slightly wider */
+  gap: 1rem;
+  width: 100%;
+  max-width: 38rem;
+  margin-inline: auto;
+}
+
+/* ── Each box ── */
+.date-box-card {
+  position: relative;
+  min-height: 10rem;
+  border-radius: 1.25rem;
+  background: linear-gradient(
+    160deg,
+    #fffdf9 0%,
+    #faf6f1 50%,
+    #f5ede3 100%
+  );
+  border: 1px solid rgba(184, 149, 111, 0.28);
+  box-shadow:
+    0 8px 32px rgba(92, 74, 58, 0.07),
+    0 1px 0  rgba(255, 255, 255, 0.95) inset;
+  padding: 2rem 1.25rem;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.35s ease;
+  overflow: hidden;
+}
+
+/* Top gold accent stripe */
+.date-box-top-line {
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  top: 0;
+  height: 1.5px;
+  border-radius: 0 0 3px 3px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(184, 149, 111, 0.65),
+    rgba(230, 210, 185, 0.95),
+    rgba(184, 149, 111, 0.65),
+    transparent
+  );
+  pointer-events: none;
+}
+
+/* Corner bracket ornaments */
+.date-box-corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: rgba(184, 149, 111, 0.45);
+  border-style: solid;
+  border-width: 0;
+  pointer-events: none;
+}
+.date-box-corner.tl { top: 0.85rem; left: 0.85rem; border-top-width: 1px; border-left-width: 1px; }
+.date-box-corner.tr { top: 0.85rem; right: 0.85rem; border-top-width: 1px; border-right-width: 1px; }
+.date-box-corner.bl { bottom: 0.85rem; left: 0.85rem; border-bottom-width: 1px; border-left-width: 1px; }
+.date-box-corner.br { bottom: 0.85rem; right: 0.85rem; border-bottom-width: 1px; border-right-width: 1px; }
+
+.date-box-card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 20px 48px rgba(184, 149, 111, 0.14),
+    0 1px 0  rgba(255, 255, 255, 1) inset;
+}
+
+/* Font sizes for each slot */
+/* Single unified size — all 3 cards the same */
+.date-box-value {
+  font-size: clamp(1.85rem, 4.5vw, 2.75rem);
+  line-height: 1.1;
+  letter-spacing: 0.08em;
+}
+
+/* ── Responsive ── */
+@media (max-width: 560px) {
+  .date-boxes-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.6rem;
+  }
+  .date-box-card { min-height: 8rem; padding: 1.5rem 0.75rem; }
+  .date-box-value { font-size: clamp(1.3rem, 5.5vw, 1.9rem); }
+}
+
+@media (max-width: 380px) {
+  .date-boxes-grid {
+    grid-template-columns: 1fr;
+    max-width: 13rem;
+  }
+  .date-box-card { min-height: 6rem; }
+}
+
 
 .countdown-unit-label {
   font-size: var(--text-eyebrow);
@@ -289,9 +421,21 @@ body {
 
 .couple-section-bg {
   background:
-    radial-gradient(ellipse 80% 50% at 20% 20%, rgba(201, 169, 146, 0.12) 0%, transparent 55%),
-    radial-gradient(ellipse 70% 45% at 80% 75%, rgba(184, 149, 111, 0.1) 0%, transparent 50%),
-    radial-gradient(ellipse 60% 40% at 50% 50%, rgba(255, 253, 249, 0.8) 0%, transparent 70%);
+    radial-gradient(
+      ellipse 80% 50% at 20% 20%,
+      rgba(201, 169, 146, 0.12) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 70% 45% at 80% 75%,
+      rgba(184, 149, 111, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse 60% 40% at 50% 50%,
+      rgba(255, 253, 249, 0.8) 0%,
+      transparent 70%
+    );
 }
 
 .couple-header-title {
@@ -324,7 +468,12 @@ body {
   padding: 1.75rem 1.5rem 1.85rem;
   border-radius: 1rem;
   border: 1px solid rgba(184, 149, 111, 0.22);
-  background: linear-gradient(168deg, rgba(255, 253, 249, 0.99) 0%, rgba(250, 246, 241, 0.94) 48%, rgba(245, 237, 227, 0.9) 100%);
+  background: linear-gradient(
+    168deg,
+    rgba(255, 253, 249, 0.99) 0%,
+    rgba(250, 246, 241, 0.94) 48%,
+    rgba(245, 237, 227, 0.9) 100%
+  );
   box-shadow:
     0 8px 32px rgba(92, 74, 58, 0.04),
     0 1px 0 rgba(255, 255, 255, 0.98) inset;
@@ -380,14 +529,21 @@ body {
 
 .couple-showcase-bride .couple-showcase-inner::before,
 .couple-showcase-groom .couple-showcase-inner::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 12%;
   right: 12%;
   top: 0;
   height: 2px;
   border-radius: 0 0 4px 4px;
-  background: linear-gradient(90deg, transparent, #b8956f, #e8d5c4, #b8956f, transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #b8956f,
+    #e8d5c4,
+    #b8956f,
+    transparent
+  );
   opacity: 0.85;
 }
 
@@ -415,11 +571,30 @@ body {
 }
 
 .couple-name-display {
-  font-size: var(--text-display-sm);
+  font-family: var(--font-engraved);
+  font-size: clamp(1.2rem, 2.8vw, 1.75rem);
   font-weight: 500;
   line-height: 1.25;
-  letter-spacing: 0.04em;
-  color: #3e2723;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+
+  /* Same warm-gold metallic gradient as hero names */
+  background: linear-gradient(
+    170deg,
+    #c8ad7e  0%,
+    #9a7e58  28%,
+    #7d6240  52%,
+    #9a7e58  74%,
+    #bda070  100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+  text-shadow:
+     1px  1px 0   rgba(215, 185, 135, 0.4),
+    -1px -1px 0   rgba(45,  28, 10,  0.18),
+     0    2px 6px  rgba(35,  22,  6,  0.12);
 }
 
 .couple-parents-panel {
@@ -505,7 +680,12 @@ body {
   flex: 1;
   max-width: 5rem;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(184, 149, 111, 0.45), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(184, 149, 111, 0.45),
+    transparent
+  );
 }
 
 .couple-cards-connector-amp {
@@ -534,7 +714,7 @@ body {
   margin-inline: auto;
   object-fit: contain;
   object-position: center bottom;
-  transform: translateX(12%);
+  transform: translateX(0);          /* centered on mobile */
   filter: drop-shadow(0 16px 32px rgba(62, 39, 35, 0.16));
 }
 
@@ -572,7 +752,11 @@ body {
   padding: 1.35rem 1.75rem;
   border: 1px solid rgba(184, 149, 111, 0.22);
   border-radius: 1.25rem;
-  background: linear-gradient(180deg, rgba(255, 253, 249, 0.98) 0%, rgba(245, 237, 227, 0.9) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 253, 249, 0.98) 0%,
+    rgba(245, 237, 227, 0.9) 100%
+  );
   box-shadow:
     0 12px 48px rgba(92, 74, 58, 0.06),
     inset 0 1px 0 rgba(255, 255, 255, 0.95);
@@ -645,13 +829,19 @@ body {
 }
 
 .couple-card-bride .couple-card-inner::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 15%;
   right: 15%;
   top: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent, #b8956f, #e8d5c4, transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #b8956f,
+    #e8d5c4,
+    transparent
+  );
 }
 
 .couple-corner {
@@ -695,7 +885,11 @@ body {
   padding: 1.75rem 2rem;
   border-radius: 9999px;
   border: 1px solid rgba(184, 149, 111, 0.25);
-  background: linear-gradient(180deg, rgba(255, 253, 249, 0.95), rgba(245, 237, 227, 0.9));
+  background: linear-gradient(
+    180deg,
+    rgba(255, 253, 249, 0.95),
+    rgba(245, 237, 227, 0.9)
+  );
   box-shadow: 0 4px 24px rgba(92, 74, 58, 0.04);
 }
 
@@ -708,7 +902,16 @@ body {
 }
 
 .scroll-progress {
-  background: linear-gradient(90deg, #3e2723, #5d4037, #b8956f, #e8d5c4, #b8956f, #5d4037, #3e2723);
+  background: linear-gradient(
+    90deg,
+    #3e2723,
+    #5d4037,
+    #b8956f,
+    #e8d5c4,
+    #b8956f,
+    #5d4037,
+    #3e2723
+  );
 }
 
 .premium-grain {
@@ -719,29 +922,51 @@ body {
 
 .hero-names-block {
   margin: 1.25rem auto;
-  max-width: 36rem;
+  max-width: 40rem;
 }
 
+/* ─────────────────────────────────────────────────────────
+   Premium Engraved Name Typography — UNIFIED SYSTEM
+   Cinzel 400 (regular) · Warm-gold metallic gradient fill
+   Reference palette: #C4AA7A (highlight) → #9A7E58 (base) → #7A6040 (shadow)
+───────────────────────────────────────────────────────── */
 .hero-name-line {
-  font-family: var(--font-hero-script);
-  font-size: var(--text-hero-script);
+  font-family: var(--font-engraved);
+  font-size: clamp(1.85rem, 5.5vw, 3.6rem);
   font-weight: 400;
-  line-height: 1.1;
-  letter-spacing: 0.03em;
-  color: #3e2723;
+  line-height: 1.2;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  /* Warm-gold metallic gradient — visible on any background */
+  background: linear-gradient(
+    170deg,
+    #c8ad7e  0%,
+    #9a7e58  28%,
+    #7d6240  52%,
+    #9a7e58  74%,
+    #bda070  100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+  /* Engraved chiseled depth — works even with transparent fill */
   text-shadow:
-    0 1px 2px rgba(250, 246, 241, 0.95),
-    0 2px 14px rgba(250, 246, 241, 0.85);
+     1px  1px 0   rgba(220, 190, 140, 0.45),
+    -1px -1px 0   rgba(45,  28, 10,  0.22),
+     0    2px 8px  rgba(35,  22,  6,  0.14);
 }
 
 .hero-amp {
-  margin: 0.5rem 0;
+  margin: 0.35rem 0;
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  font-size: clamp(1rem, 2.4vw, 1.5rem);
   font-style: italic;
   font-weight: 400;
   line-height: 1;
-  color: #b8956f;
+  color: rgba(184, 149, 111, 0.9);
+  text-shadow: 0 1px 6px rgba(255, 240, 210, 0.5);
 }
 
 .hero-invite-line {
@@ -913,8 +1138,16 @@ body {
 
 .footer-section-bg {
   background:
-    radial-gradient(ellipse 70% 50% at 20% 80%, rgba(184, 149, 111, 0.1) 0%, transparent 55%),
-    radial-gradient(ellipse 60% 45% at 80% 20%, rgba(201, 169, 146, 0.08) 0%, transparent 50%);
+    radial-gradient(
+      ellipse 70% 50% at 20% 80%,
+      rgba(184, 149, 111, 0.1) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 60% 45% at 80% 20%,
+      rgba(201, 169, 146, 0.08) 0%,
+      transparent 50%
+    );
 }
 
 .footer-closing-text {
@@ -991,8 +1224,16 @@ body {
 
 .venue-section-bg {
   background:
-    radial-gradient(ellipse 70% 50% at 15% 30%, rgba(184, 149, 111, 0.1) 0%, transparent 55%),
-    radial-gradient(ellipse 60% 45% at 85% 70%, rgba(201, 169, 146, 0.08) 0%, transparent 50%);
+    radial-gradient(
+      ellipse 70% 50% at 15% 30%,
+      rgba(184, 149, 111, 0.1) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 60% 45% at 85% 70%,
+      rgba(201, 169, 146, 0.08) 0%,
+      transparent 50%
+    );
 }
 
 .venue-header-label {
@@ -1024,7 +1265,11 @@ body {
   padding: 2rem 1.75rem;
   border-radius: 1.5rem;
   border: 1px solid rgba(184, 149, 111, 0.22);
-  background: linear-gradient(165deg, rgba(255, 253, 249, 0.98) 0%, rgba(250, 246, 241, 0.95) 100%);
+  background: linear-gradient(
+    165deg,
+    rgba(255, 253, 249, 0.98) 0%,
+    rgba(250, 246, 241, 0.95) 100%
+  );
   box-shadow:
     0 20px 56px rgba(92, 74, 58, 0.07),
     inset 0 1px 0 rgba(255, 255, 255, 0.95);
@@ -1075,7 +1320,11 @@ body {
   justify-content: center;
   border-radius: 9999px;
   border: 1px solid rgba(196, 168, 130, 0.3);
-  background: linear-gradient(145deg, rgba(255, 253, 249, 1) 0%, rgba(245, 237, 227, 0.8) 100%);
+  background: linear-gradient(
+    145deg,
+    rgba(255, 253, 249, 1) 0%,
+    rgba(245, 237, 227, 0.8) 100%
+  );
   box-shadow: 0 4px 16px rgba(184, 149, 111, 0.12);
 }
 
@@ -1390,9 +1639,21 @@ body {
 /* Envelope intro */
 .envelope-intro__glow {
   background:
-    radial-gradient(ellipse 70% 50% at 50% 42%, rgba(196, 168, 130, 0.18), transparent 70%),
-    radial-gradient(ellipse 40% 30% at 20% 80%, rgba(184, 149, 111, 0.1), transparent 70%),
-    radial-gradient(ellipse 40% 30% at 80% 75%, rgba(184, 149, 111, 0.08), transparent 70%);
+    radial-gradient(
+      ellipse 70% 50% at 50% 42%,
+      rgba(196, 168, 130, 0.18),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 40% 30% at 20% 80%,
+      rgba(184, 149, 111, 0.1),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 40% 30% at 80% 75%,
+      rgba(184, 149, 111, 0.08),
+      transparent 70%
+    );
 }
 
 .envelope-intro__trigger {
@@ -1468,7 +1729,11 @@ body {
   z-index: 2;
   height: 1.25rem;
   border-radius: 50%;
-  background: radial-gradient(ellipse at center, rgba(62, 39, 35, 0.18), transparent 72%);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(62, 39, 35, 0.18),
+    transparent 72%
+  );
   filter: blur(3px);
   transition: opacity 0.6s ease;
 }
@@ -1481,8 +1746,8 @@ body {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 0.5rem;
-  height: min(13.5rem, 38vw);
+  bottom: 0;
+  height: min(11rem, 38vw);
   z-index: 3;
   overflow: hidden;
   border-radius: 0.4rem;
@@ -1557,7 +1822,12 @@ body {
 .envelope-intro__letter-rule {
   width: 3.25rem;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-gold),
+    transparent
+  );
 }
 
 .envelope-intro__letter-date {
@@ -1575,14 +1845,24 @@ body {
   z-index: 3;
   pointer-events: none;
   background:
-    linear-gradient(135deg, transparent 49.5%, rgba(255, 255, 255, 0.35) 50%, transparent 50.5%),
-    linear-gradient(225deg, transparent 49.5%, rgba(0, 0, 0, 0.04) 50%, transparent 50.5%);
+    linear-gradient(
+      135deg,
+      transparent 49.5%,
+      rgba(255, 255, 255, 0.35) 50%,
+      transparent 50.5%
+    ),
+    linear-gradient(
+      225deg,
+      transparent 49.5%,
+      rgba(0, 0, 0, 0.04) 50%,
+      transparent 50.5%
+    );
   clip-path: polygon(0 100%, 50% 42%, 100% 100%);
 }
 
 .envelope-intro__front::before,
 .envelope-intro__front::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   width: 50.5%;
@@ -1647,7 +1927,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle at 32% 28%, #d4a88a 0%, #a86f52 38%, #7a4f38 100%);
+  background: radial-gradient(
+    circle at 32% 28%,
+    #d4a88a 0%,
+    #a86f52 38%,
+    #7a4f38 100%
+  );
   box-shadow:
     0 4px 14px rgba(62, 39, 35, 0.24),
     inset 0 2px 4px rgba(255, 255, 255, 0.25),
@@ -1655,7 +1940,7 @@ body {
 }
 
 .envelope-intro__seal::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0.35rem;
   border-radius: 50%;
@@ -1682,5 +1967,146 @@ body {
 
   .envelope-intro__flap {
     transition-duration: 0.2s;
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   PREMIUM WEDDING TYPOGRAPHY SYSTEM
+   ─────────────────────────────────────────────────────────────
+   Palette:
+     Shadow    #96846B  (var --gold-base)
+     Highlight #A39278  (var --gold-mid)
+     Sheen     #DACCB6  (var --gold-sheen)
+   Background: champagne warm #F7F2EA (var --champagne-bg)
+═══════════════════════════════════════════════════════════════ */
+
+/* ── Engraved Monogram / Large Date (Countdown) ── */
+.engraved-monogram {
+  font-family: var(--font-engraved);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+
+  /* Same warm-gold metallic gradient — unified */
+  background: linear-gradient(
+    170deg,
+    #c8ad7e  0%,
+    #9a7e58  28%,
+    #7d6240  52%,
+    #9a7e58  74%,
+    #bda070  100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+  text-shadow:
+     1px  1px 0   rgba(215, 185, 135, 0.4),
+    -1px -1px 0   rgba(45,  28, 10,  0.18),
+     0    2px 6px  rgba(35,  22,  6,  0.12);
+}
+
+/* ── Wide-Tracked All-Caps Body Serif (dates, venue, details) ── */
+.type-tracked-caps {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(0.7rem, 1.4vw, 0.875rem);
+  line-height: 1.85;
+  text-transform: uppercase;
+  letter-spacing: 0.32em;
+  color: var(--gold-base);
+}
+
+/* Slightly larger variant for venue name */
+.type-tracked-caps--lg {
+  font-size: clamp(0.825rem, 1.7vw, 1.05rem);
+  letter-spacing: 0.28em;
+  color: var(--gold-mid);
+}
+
+/* ── Metallic Foil Text (general utility) ── */
+.text-metallic-foil {
+  background: linear-gradient(
+    168deg,
+    var(--gold-shadow)    0%,
+    var(--gold-base)      22%,
+    var(--gold-mid)       42%,
+    var(--gold-highlight) 58%,
+    var(--gold-sheen)     72%,
+    var(--gold-mid)       84%,
+    var(--gold-base)      100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Shimmer sweep animation for foil text ── */
+@keyframes foil-shimmer {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+.text-metallic-foil--animated {
+  background: linear-gradient(
+    105deg,
+    var(--gold-shadow)    0%,
+    var(--gold-base)      18%,
+    var(--gold-mid)       33%,
+    var(--gold-sheen)     48%,
+    var(--gold-highlight) 55%,
+    var(--gold-sheen)     62%,
+    var(--gold-mid)       78%,
+    var(--gold-base)      92%,
+    var(--gold-shadow)    100%
+  );
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: foil-shimmer 6s linear infinite;
+}
+
+
+/* ── Champagne background utility ── */
+.bg-champagne {
+  background-color: var(--champagne-bg);
+}
+
+/* ── Invitation card surface (warm champagne + subtle texture) ── */
+.invitation-surface {
+  background: linear-gradient(
+    170deg,
+    #fdfaf5 0%,
+    var(--champagne-bg) 45%,
+    #f2ece0 100%
+  );
+}
+
+/* ── Fine separator rule in gold ── */
+.rule-gold {
+  border: none;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--gold-base),
+    var(--gold-sheen),
+    var(--gold-base),
+    transparent
+  );
+  opacity: 0.55;
+}
+
+/* ── Responsive tweaks for engraved names on small screens ── */
+@media (max-width: 480px) {
+  .hero-name-line {
+    letter-spacing: 0.1em;
+    font-size: clamp(1.55rem, 7.5vw, 2rem);
+  }
+
+  .couple-name-display {
+    letter-spacing: 0.08em;
   }
 }
