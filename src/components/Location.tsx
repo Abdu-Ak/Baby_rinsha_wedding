@@ -64,7 +64,9 @@ export function Location() {
                 <MapPin className="h-6 w-6 text-gold" strokeWidth={1.5} />
               </div>
 
-              <p className="venue-info-eyebrow type-tracked-caps">You&apos;re invited to</p>
+              <p className="venue-info-eyebrow type-tracked-caps">
+                You&apos;re invited to
+              </p>
               <h3 className="font-display venue-info-name">{venue.name}</h3>
               <p className="venue-info-area type-tracked-caps--lg">
                 {venue.area}, {venue.city}
@@ -125,22 +127,6 @@ export function Location() {
                 />
 
                 <div className="venue-map-vignette" aria-hidden />
-
-                <motion.div
-                  className="venue-map-pin"
-                  initial={{ y: -8, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  viewport={viewportOnce}
-                  transition={{ delay: 0.35, type: "spring", stiffness: 200 }}
-                >
-                  <span className="venue-map-pin-pulse" aria-hidden />
-                  <span className="venue-map-pin-dot">
-                    <MapPin
-                      className="h-5 w-5 text-linen"
-                      fill="currentColor"
-                    />
-                  </span>
-                </motion.div>
               </div>
 
               <div className="venue-map-badge">

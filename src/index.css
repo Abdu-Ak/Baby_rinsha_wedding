@@ -46,12 +46,12 @@
   --font-engraved-deco: "Cinzel Decorative", "Cinzel", serif;
 
   /* Metallic foil palette */
-  --gold-shadow:     #6b5a46;
-  --gold-base:       #96846b;
-  --gold-mid:        #a39278;
-  --gold-highlight:  #c4ae90;
-  --gold-sheen:      #daccb6;
-  --champagne-bg:    #f7f2ea;
+  --gold-shadow: #6b5a46;
+  --gold-base: #96846b;
+  --gold-mid: #a39278;
+  --gold-highlight: #c4ae90;
+  --gold-sheen: #daccb6;
+  --champagne-bg: #f7f2ea;
 
   /* Premium type scale */
   --text-eyebrow: 0.75rem;
@@ -296,7 +296,7 @@ body {
 /* Row of 3 boxes */
 .date-boxes-grid {
   display: grid;
-  grid-template-columns: 1fr 1.35fr 1fr;   /* month box slightly wider */
+  grid-template-columns: 1fr 1.35fr 1fr; /* month box slightly wider */
   gap: 1rem;
   width: 100%;
   max-width: 38rem;
@@ -308,19 +308,15 @@ body {
   position: relative;
   min-height: 10rem;
   border-radius: 1.25rem;
-  background: linear-gradient(
-    160deg,
-    #fffdf9 0%,
-    #faf6f1 50%,
-    #f5ede3 100%
-  );
+  background: linear-gradient(160deg, #fffdf9 0%, #faf6f1 50%, #f5ede3 100%);
   border: 1px solid rgba(184, 149, 111, 0.28);
   box-shadow:
     0 8px 32px rgba(92, 74, 58, 0.07),
-    0 1px 0  rgba(255, 255, 255, 0.95) inset;
+    0 1px 0 rgba(255, 255, 255, 0.95) inset;
   padding: 2rem 1.25rem;
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 0.35s ease;
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease;
   overflow: hidden;
 }
 
@@ -343,26 +339,11 @@ body {
   pointer-events: none;
 }
 
-/* Corner bracket ornaments */
-.date-box-corner {
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  border-color: rgba(184, 149, 111, 0.45);
-  border-style: solid;
-  border-width: 0;
-  pointer-events: none;
-}
-.date-box-corner.tl { top: 0.85rem; left: 0.85rem; border-top-width: 1px; border-left-width: 1px; }
-.date-box-corner.tr { top: 0.85rem; right: 0.85rem; border-top-width: 1px; border-right-width: 1px; }
-.date-box-corner.bl { bottom: 0.85rem; left: 0.85rem; border-bottom-width: 1px; border-left-width: 1px; }
-.date-box-corner.br { bottom: 0.85rem; right: 0.85rem; border-bottom-width: 1px; border-right-width: 1px; }
-
 .date-box-card:hover {
   transform: translateY(-6px);
   box-shadow:
     0 20px 48px rgba(184, 149, 111, 0.14),
-    0 1px 0  rgba(255, 255, 255, 1) inset;
+    0 1px 0 rgba(255, 255, 255, 1) inset;
 }
 
 /* Font sizes for each slot */
@@ -373,14 +354,26 @@ body {
   letter-spacing: 0.08em;
 }
 
+.date-box-value--month {
+  font-size: clamp(1.7rem, 4vw, 2.5rem);
+}
+
 /* ── Responsive ── */
 @media (max-width: 560px) {
   .date-boxes-grid {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1.35fr 1fr;
     gap: 0.6rem;
   }
-  .date-box-card { min-height: 8rem; padding: 1.5rem 0.75rem; }
-  .date-box-value { font-size: clamp(1.3rem, 5.5vw, 1.9rem); }
+  .date-box-card {
+    min-height: 8rem;
+    padding: 1.5rem 0.75rem;
+  }
+  .date-box-value {
+    font-size: clamp(1.3rem, 5.5vw, 1.9rem);
+  }
+  .date-box-value--month {
+    font-size: clamp(1.05rem, 4.4vw, 1.45rem);
+  }
 }
 
 @media (max-width: 380px) {
@@ -388,9 +381,10 @@ body {
     grid-template-columns: 1fr;
     max-width: 13rem;
   }
-  .date-box-card { min-height: 6rem; }
+  .date-box-card {
+    min-height: 6rem;
+  }
 }
-
 
 .countdown-unit-label {
   font-size: var(--text-eyebrow);
@@ -581,20 +575,20 @@ body {
   /* Same warm-gold metallic gradient as hero names */
   background: linear-gradient(
     170deg,
-    #c8ad7e  0%,
-    #9a7e58  28%,
-    #7d6240  52%,
-    #9a7e58  74%,
-    #bda070  100%
+    #c8ad7e 0%,
+    #9a7e58 28%,
+    #7d6240 52%,
+    #9a7e58 74%,
+    #bda070 100%
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 
   text-shadow:
-     1px  1px 0   rgba(215, 185, 135, 0.4),
-    -1px -1px 0   rgba(45,  28, 10,  0.18),
-     0    2px 6px  rgba(35,  22,  6,  0.12);
+    1px 1px 0 rgba(215, 185, 135, 0.4),
+    -1px -1px 0 rgba(45, 28, 10, 0.18),
+    0 2px 6px rgba(35, 22, 6, 0.12);
 }
 
 .couple-parents-panel {
@@ -714,7 +708,7 @@ body {
   margin-inline: auto;
   object-fit: contain;
   object-position: center bottom;
-  transform: translateX(0);          /* centered on mobile */
+  transform: translateX(0); /* centered on mobile */
   filter: drop-shadow(0 16px 32px rgba(62, 39, 35, 0.16));
 }
 
@@ -941,11 +935,11 @@ body {
   /* Warm-gold metallic gradient — visible on any background */
   background: linear-gradient(
     170deg,
-    #c8ad7e  0%,
-    #9a7e58  28%,
-    #7d6240  52%,
-    #9a7e58  74%,
-    #bda070  100%
+    #c8ad7e 0%,
+    #9a7e58 28%,
+    #7d6240 52%,
+    #9a7e58 74%,
+    #bda070 100%
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -953,9 +947,9 @@ body {
 
   /* Engraved chiseled depth — works even with transparent fill */
   text-shadow:
-     1px  1px 0   rgba(220, 190, 140, 0.45),
-    -1px -1px 0   rgba(45,  28, 10,  0.22),
-     0    2px 8px  rgba(35,  22,  6,  0.14);
+    1px 1px 0 rgba(220, 190, 140, 0.45),
+    -1px -1px 0 rgba(45, 28, 10, 0.22),
+    0 2px 8px rgba(35, 22, 6, 0.14);
 }
 
 .hero-amp {
@@ -1704,10 +1698,10 @@ body {
 .envelope-intro__couple {
   position: absolute;
   left: 50%;
-  bottom: 0;
+  bottom: 0.5rem;
   z-index: 1;
   width: min(26rem, 112vw);
-  height: min(25rem, 70vw);
+  height: min(25rem, 90vw);
   margin-inline: auto;
   pointer-events: none;
   filter: drop-shadow(0 12px 20px rgba(62, 39, 35, 0.14));
@@ -1970,7 +1964,6 @@ body {
   }
 }
 
-
 /* ═══════════════════════════════════════════════════════════════
    PREMIUM WEDDING TYPOGRAPHY SYSTEM
    ─────────────────────────────────────────────────────────────
@@ -1991,20 +1984,20 @@ body {
   /* Same warm-gold metallic gradient — unified */
   background: linear-gradient(
     170deg,
-    #c8ad7e  0%,
-    #9a7e58  28%,
-    #7d6240  52%,
-    #9a7e58  74%,
-    #bda070  100%
+    #c8ad7e 0%,
+    #9a7e58 28%,
+    #7d6240 52%,
+    #9a7e58 74%,
+    #bda070 100%
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 
   text-shadow:
-     1px  1px 0   rgba(215, 185, 135, 0.4),
-    -1px -1px 0   rgba(45,  28, 10,  0.18),
-     0    2px 6px  rgba(35,  22,  6,  0.12);
+    1px 1px 0 rgba(215, 185, 135, 0.4),
+    -1px -1px 0 rgba(45, 28, 10, 0.18),
+    0 2px 6px rgba(35, 22, 6, 0.12);
 }
 
 /* ── Wide-Tracked All-Caps Body Serif (dates, venue, details) ── */
@@ -2029,13 +2022,13 @@ body {
 .text-metallic-foil {
   background: linear-gradient(
     168deg,
-    var(--gold-shadow)    0%,
-    var(--gold-base)      22%,
-    var(--gold-mid)       42%,
+    var(--gold-shadow) 0%,
+    var(--gold-base) 22%,
+    var(--gold-mid) 42%,
     var(--gold-highlight) 58%,
-    var(--gold-sheen)     72%,
-    var(--gold-mid)       84%,
-    var(--gold-base)      100%
+    var(--gold-sheen) 72%,
+    var(--gold-mid) 84%,
+    var(--gold-base) 100%
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -2044,22 +2037,26 @@ body {
 
 /* ── Shimmer sweep animation for foil text ── */
 @keyframes foil-shimmer {
-  0%   { background-position: 200% center; }
-  100% { background-position: -200% center; }
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
 }
 
 .text-metallic-foil--animated {
   background: linear-gradient(
     105deg,
-    var(--gold-shadow)    0%,
-    var(--gold-base)      18%,
-    var(--gold-mid)       33%,
-    var(--gold-sheen)     48%,
+    var(--gold-shadow) 0%,
+    var(--gold-base) 18%,
+    var(--gold-mid) 33%,
+    var(--gold-sheen) 48%,
     var(--gold-highlight) 55%,
-    var(--gold-sheen)     62%,
-    var(--gold-mid)       78%,
-    var(--gold-base)      92%,
-    var(--gold-shadow)    100%
+    var(--gold-sheen) 62%,
+    var(--gold-mid) 78%,
+    var(--gold-base) 92%,
+    var(--gold-shadow) 100%
   );
   background-size: 250% auto;
   -webkit-background-clip: text;
@@ -2067,7 +2064,6 @@ body {
   background-clip: text;
   animation: foil-shimmer 6s linear infinite;
 }
-
 
 /* ── Champagne background utility ── */
 .bg-champagne {

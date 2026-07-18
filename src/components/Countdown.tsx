@@ -70,10 +70,6 @@ function DateDisplay() {
           }}
           whileHover={{ y: -6 }}
         >
-          <span className="date-box-corner tl" />
-          <span className="date-box-corner tr" />
-          <span className="date-box-corner bl" />
-          <span className="date-box-corner br" />
           <span className="date-box-top-line" />
 
           <p className="type-tracked-caps mb-2 opacity-70">Date</p>
@@ -95,14 +91,10 @@ function DateDisplay() {
           }}
           whileHover={{ y: -6 }}
         >
-          <span className="date-box-corner tl" />
-          <span className="date-box-corner tr" />
-          <span className="date-box-corner bl" />
-          <span className="date-box-corner br" />
           <span className="date-box-top-line" />
 
           <p className="type-tracked-caps mb-2 opacity-70">Month</p>
-          <p className="engraved-monogram date-box-value">{month}</p>
+          <p className="engraved-monogram date-box-value date-box-value--month">{month}</p>
         </motion.div>
 
         {/* Box 3 — 2026 */}
@@ -120,10 +112,6 @@ function DateDisplay() {
           }}
           whileHover={{ y: -6 }}
         >
-          <span className="date-box-corner tl" />
-          <span className="date-box-corner tr" />
-          <span className="date-box-corner bl" />
-          <span className="date-box-corner br" />
           <span className="date-box-top-line" />
 
           <p className="type-tracked-caps mb-2 opacity-70">Year</p>
